@@ -7,15 +7,33 @@ class Grid extends Component {
       position: [0, 0],
       left: 0,
       right: 0,
-      direction: "N"
+      direction: 90,
+      dir: "N"
     };
   }
   handleChange = e => {
-    e.preventDefault();
-    this.setState({ [e.targe.name]: 1 });
+    // e.preventDefault();
+    let currentDir = this.state.direction;
+    let change = e.target.name === "Ldirection" ? 90 : -90;
+    currentDir += change;
+    currentDir = currentDir === 360 ? 0 : currentDir;
+    console.log(
+      "new direction to x degrees",
+      change,
+      "degrees updated to: ",
+      currentDir
+    );
+    if (currentDir === 90) {
+    } else if (currentDir === 180) {
+    } else if (currentDir === 270) {
+    } else {
+    }
+
+    this.setState({ direction: currentDir });
   };
   handleSubmit = () => {
-    this.setState({});
+    // this.setState({});
+    console.log("test");
   };
   render() {
     return (
@@ -24,12 +42,12 @@ class Grid extends Component {
           <div className="head">Head</div>
         </div>
         <div>
-          Current position is: {this.state.position} {this.state.direction}
+          Current position is: {this.state.position} {this.state.dir}
         </div>
         <button
           className="direction"
           name="Ldirection"
-          onChange={this.handleChange}
+          onClick={this.handleChange}
           value={this.state.left}
         >
           Left
@@ -38,13 +56,14 @@ class Grid extends Component {
         {/* <button className="move">Move Down What</button> */}
         <button
           className="direction"
-          name="Ldirection"
-          onChange={this.handleChange}
+          name="Rdirection"
+          // onChange={this.handleChange}
+          onClick={this.handleChange}
           value={this.state.right}
         >
           Right
         </button>
-        <div>Position moved to: {this.state.direction}</div>
+        <div>Position moved to: {this.state.dir}</div>
       </div>
     );
   }
