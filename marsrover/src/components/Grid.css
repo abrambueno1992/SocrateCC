@@ -1,6 +1,28 @@
 .rover {
   background: red;
-  color: blue;
-  height: 2em;
-  width: 15%;
+  /* color: blue; */
+  height: 6em;
+  width: 5%;
+  text-align: end;
+  display: inline-flex;
+  /* flex-direction: row-reverse; */
+  /* align-items: flex-end; */
+}
+.head {
+  background: blue;
+  text-align: center;
+  height: 3em;
+  margin-bottom: 0.5em;
+  width: 50%;
+  margin-left: 25%;
+}
+.move {
+  background: red;
+  display: inline;
+  margin-top: 5%;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+.direction {
+  display: inline;
 }
