@@ -58,7 +58,7 @@ class Grid extends Component {
   render() {
     return (
       <div>
-        <GridDisplay angle={this.state.angle} />
+        <GridDisplay angle={this.state.angle} position={this.state.position} />
         <div>
           Current position is: {this.state.position} {this.state.dir}
         </div>
