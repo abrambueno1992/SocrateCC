@@ -8,6 +8,7 @@ class Grid extends Component {
       left: 0,
       right: 0,
       direction: 90,
+      angle: 90,
       dir: "N"
     };
   }
@@ -29,16 +30,26 @@ class Grid extends Component {
       "degrees updated to: ",
       currentDir
     );
+    // Angle transformation from regular angles (0 at the right, counter clockwise)
+    // to transform angles (0 at the left, clockwise)...
+    // 360 => 180 ... complete revolution
+    // 270 => 270
+    // 180 => 0
+    // 90 => 90
+    // 0 || 360 => 180
+    // angle === counter clockwise dir needed for transform functionality
+    // direction === clockwise dir, the usual.
     if (currentDir === 90) {
-      this.setState({ direction: currentDir, dir: "N" });
+      this.setState({ direction: currentDir, dir: "N", angle: 90 });
     } else if (currentDir === 180) {
-      this.setState({ direction: currentDir, dir: "W" });
+      this.setState({ direction: currentDir, dir: "W", angle: 0 });
     } else if (currentDir === 270) {
-      this.setState({ direction: currentDir, dir: "S" });
+      this.setState({ direction: currentDir, dir: "S", angle: 270 });
     } else {
-      this.setState({ direction: currentDir, dir: "E" });
+      this.setState({ direction: currentDir, dir: "E", angle: 180 });
     }
   };
+
   handleSubmit = () => {
     // this.setState({});
     console.log("test");
@@ -46,7 +57,10 @@ class Grid extends Component {
   render() {
     return (
       <div>
-        <div className="rover">
+        <div
+          className="rover"
+          style={{ transform: `rotate(${this.state.angle}deg)` }}
+        >
           <div className="head">Head</div>
         </div>
         <div>
