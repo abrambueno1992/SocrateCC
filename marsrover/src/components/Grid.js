@@ -58,12 +58,6 @@ class Grid extends Component {
   render() {
     return (
       <div>
-        {/* <div
-          className="rover"
-          style={{ transform: `rotate(${this.state.angle}deg)` }}
-        >
-          <div className="head">Head</div>
-        </div> */}
         <GridDisplay angle={this.state.angle} />
         <div>
           Current position is: {this.state.position} {this.state.dir}
@@ -77,11 +71,9 @@ class Grid extends Component {
           Left
         </button>
         <button className="move">Move</button>
-        {/* <button className="move">Move Down What</button> */}
         <button
           className="direction"
           name="Rdirection"
-          // onChange={this.handleChange}
           onClick={this.handleChange}
           value={this.state.right}
         >
