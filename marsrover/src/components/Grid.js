@@ -14,8 +14,14 @@ class Grid extends Component {
   handleChange = e => {
     // e.preventDefault();
     let currentDir = this.state.direction;
-    let change = e.target.name === "Ldirection" ? 90 : -90;
+    let change = e.target.name === "Ldirection" ? 90 : 270;
     currentDir += change;
+    if (change === 270) {
+      if (currentDir >= 360) {
+        currentDir -= 360;
+      } else {
+      }
+    }
     currentDir = currentDir === 360 ? 0 : currentDir;
     console.log(
       "new direction to x degrees",
@@ -24,12 +30,14 @@ class Grid extends Component {
       currentDir
     );
     if (currentDir === 90) {
+      this.setState({ direction: currentDir, dir: "N" });
     } else if (currentDir === 180) {
+      this.setState({ direction: currentDir, dir: "W" });
     } else if (currentDir === 270) {
+      this.setState({ direction: currentDir, dir: "S" });
     } else {
+      this.setState({ direction: currentDir, dir: "E" });
     }
-
-    this.setState({ direction: currentDir });
   };
   handleSubmit = () => {
     // this.setState({});
@@ -63,7 +71,9 @@ class Grid extends Component {
         >
           Right
         </button>
-        <div>Position moved to: {this.state.dir}</div>
+        <div>
+          Position moved to: {this.state.dir} {this.state.direction}{" "}
+        </div>
       </div>
     );
   }
