@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./GridDisplay.css";
 const Rover = props => {
   return (
     <div className="rover" style={{ transform: `rotate(${props.angle}deg)` }}>
