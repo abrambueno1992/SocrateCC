@@ -22,13 +22,17 @@ const gridDisplay = props => {
   const yPos = props.position[1];
   return (
     <div>
-      <Rover angle={props.angle} />
+      {/* <Rover angle={props.angle} /> */}
 
-      {xGrids.map(row => {
+      {yGrids.map(row => {
         return (
-          <div className="row">
-            {yGrids.map(column => {
-              return <div className="column" />;
+          <div className="column">
+            {xGrids.map(column => {
+              if (row !== xPos && column !== yPos) {
+                return <div className="row" />;
+              } else {
+                return <Rover className="row" angle={props.angle} />;
+              }
             })}
           </div>
         );

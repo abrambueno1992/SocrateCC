@@ -1,11 +1,13 @@
 .row {
   height: 2em;
-  background: beige;
-  border: 1px solid red;
+  background: green;
+  width: 100%;
+  border: 1px solid beige;
 }
 .column {
   height: 2em;
-  background: yellow;
-  width: 20%;
-  border: 1px solid red;
+  display: inline-flex;
+  background: blue;
+  width: 100%;
+  /* border: 1px solid red; */
 }
