@@ -26,9 +26,9 @@ const gridDisplay = props => {
 
       {xGrids.map(row => {
         return (
-          <div>
+          <div className="row">
             {yGrids.map(column => {
-              return <div className="grid" />;
+              return <div className="column" />;
             })}
           </div>
         );

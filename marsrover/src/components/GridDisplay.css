@@ -1,4 +1,9 @@
-.grid {
+.row {
+  height: 2em;
+  background: beige;
+  border: 1px solid red;
+}
+.column {
   height: 2em;
   background: yellow;
   width: 20%;
