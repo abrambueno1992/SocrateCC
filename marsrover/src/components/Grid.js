@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Grid.css";
+import GridDisplay from "./GridDisplay";
 class Grid extends Component {
   constructor(props) {
     super(props);
@@ -57,12 +58,13 @@ class Grid extends Component {
   render() {
     return (
       <div>
-        <div
+        {/* <div
           className="rover"
           style={{ transform: `rotate(${this.state.angle}deg)` }}
         >
           <div className="head">Head</div>
-        </div>
+        </div> */}
+        <GridDisplay angle={this.state.angle} />
         <div>
           Current position is: {this.state.position} {this.state.dir}
         </div>
