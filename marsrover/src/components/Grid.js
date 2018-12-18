@@ -150,11 +150,10 @@ class Grid extends Component {
   };
   sendCommands = e => {
     let split = this.state.inputCommand.split("");
-    // let x = this.state.position[1];
-    // let y = this.state.position[0];
     console.log("COmmands for input", split);
-    // split.forEach((each, i) => {
     let each = split[0];
+    split.shift();
+
     console.log("Each command", each);
     if (each !== "M") {
       let currentDir = this.state.direction;
@@ -168,19 +167,99 @@ class Grid extends Component {
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
       if (currentDir === 90) {
-        this.setState({ direction: currentDir, dir: "N", angle: 90 });
+        this.setState({
+          direction: currentDir,
+          dir: "N",
+          angle: 90,
+          commandQueu: split
+        });
       } else if (currentDir === 180) {
-        this.setState({ direction: currentDir, dir: "W", angle: 0 });
+        this.setState({
+          direction: currentDir,
+          dir: "W",
+          angle: 0,
+          commandQueu: split
+        });
       } else if (currentDir === 270) {
-        this.setState({ direction: currentDir, dir: "S", angle: 270 });
+        this.setState({
+          direction: currentDir,
+          dir: "S",
+          angle: 270,
+          commandQueu: split
+        });
       } else {
-        this.setState({ direction: currentDir, dir: "E", angle: 180 });
+        this.setState({
+          direction: currentDir,
+          dir: "E",
+          angle: 180,
+          commandQueu: split
+        });
       }
     } else {
+      this.setState({ commandQueu: split });
       this.handleMove();
     }
     // });
   };
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.commandQueu !== this.state.commandQueu) {
+      if (this.state.commandQueu.length !== 0) {
+        console.log("cdm, commands in queu", this.state.commandQueu);
+        const split = [];
+        this.state.commandQueu.forEach(each => split.push(each));
+        console.log("queue stacked", split);
+        let each = split[0];
+        split.shift();
+        console.log("New queue", split, each, typeof each);
+
+        if (each !== "M") {
+          let currentDir = this.state.direction;
+          let change = each === "L" ? 90 : 270;
+          currentDir += change;
+          if (change === 270) {
+            if (currentDir >= 360) {
+              currentDir -= 360;
+            } else {
+            }
+          }
+          currentDir = currentDir === 360 ? 0 : currentDir;
+          if (currentDir === 90) {
+            this.setState({
+              direction: currentDir,
+              dir: "N",
+              angle: 90,
+              commandQueu: split
+            });
+          } else if (currentDir === 180) {
+            this.setState({
+              direction: currentDir,
+              dir: "W",
+              angle: 0,
+              commandQueu: split
+            });
+          } else if (currentDir === 270) {
+            this.setState({
+              direction: currentDir,
+              dir: "S",
+              angle: 270,
+              commandQueu: split
+            });
+          } else {
+            this.setState({
+              direction: currentDir,
+              dir: "E",
+              angle: 180,
+              commandQueu: split
+            });
+          }
+        } else {
+          this.setState({ commandQueu: split });
+          this.handleMove();
+        }
+      }
+    }
+  };
+
   render() {
     return (
       <div>
