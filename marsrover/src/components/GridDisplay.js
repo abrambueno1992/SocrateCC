@@ -1,9 +1,10 @@
 import React from "react";
 import "./GridDisplay.css";
+import "./Grid.css";
 const Rover = props => {
   return (
     <div className="rover" style={{ transform: `rotate(${props.angle}deg)` }}>
-      <div className="head">Head</div>
+      <div className="head">[X]</div>
     </div>
   );
 };
@@ -28,11 +29,13 @@ const gridDisplay = props => {
         return (
           <div className="column">
             {xGrids.map(column => {
-              if (row !== xPos && column !== yPos) {
-                return <div className="row" />;
-              } else {
-                return <Rover className="row" angle={props.angle} />;
-              }
+              if (row === xPos && yPos === column)
+                return <Rover style={{ height: "100%" }} angle={props.angle} />;
+              // if (row !== xPos && column !== yPos) {
+              return <div className="row" />;
+              // } else {
+              //   return <Rover className="row" angle={props.angle} />;
+              // }
             })}
           </div>
         );
