@@ -10,17 +10,21 @@ const Rover = props => {
 };
 
 const gridDisplay = props => {
+  const { xGridNumber, yGridNumber } = props;
+
   const xGrids = [];
 
   const yGrids = [];
-  for (let i = 0; 12 > i; i++) {
+  for (let i = 0; xGridNumber > i; i++) {
     xGrids.push(i);
   }
-  for (let i = 0; 10 > i; i++) {
+  for (let i = 0; yGridNumber > i; i++) {
     yGrids.push(i);
   }
   const xPos = props.position[0];
   const yPos = props.position[1];
+  console.log("x", xPos, "y", yPos);
+
   return (
     <div>
       {/* <Rover angle={props.angle} /> */}

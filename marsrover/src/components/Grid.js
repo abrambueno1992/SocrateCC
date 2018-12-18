@@ -6,6 +6,8 @@ class Grid extends Component {
     super(props);
     this.state = {
       position: [0, 0],
+      xGrids: 12,
+      yGrids: 10,
       left: 0,
       right: 0,
       direction: 90,
@@ -55,29 +57,42 @@ class Grid extends Component {
   handleMove = e => {
     e.preventDefault();
     let direction = this.state.dir;
-    let x = this.state.position[0];
-    let y = this.state.position[1];
+    // position = (y, x) ... values starting at (0,0)
+    let x = this.state.position[1];
+    let y = this.state.position[0];
+    const { xGrids, yGrids } = this.state;
     if (direction === "N") {
-      x += 1;
-    } else if (direction === "S") {
-      x -= 1;
-    } else if (direction === "E") {
       y += 1;
-    } else {
+    } else if (direction === "S") {
       y -= 1;
+    } else if (direction === "E") {
+      x += 1;
+    } else {
+      x -= 1;
     }
     if (x < 0 || y < 0) {
       this.setState({ danger: true });
       return;
     }
-    this.setState({ position: [x, y] });
+    console.log("Change x:", x, "y:", y);
+    if (x >= xGrids || y >= yGrids) {
+      this.setState({ danger: true });
+      return;
+    }
+    // position = (y, x) ... values starting at (0,0)
+    this.setState({ position: [y, x], danger: false });
     // this.setState({});
     console.log("test");
   };
   render() {
     return (
       <div>
-        <GridDisplay angle={this.state.angle} position={this.state.position} />
+        <GridDisplay
+          angle={this.state.angle}
+          position={this.state.position}
+          xGridNumber={this.state.xGrids}
+          yGridNumber={this.state.yGrids}
+        />
         <div>
           Current position is: {this.state.position} {this.state.dir}
         </div>
