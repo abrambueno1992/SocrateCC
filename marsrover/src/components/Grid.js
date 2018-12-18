@@ -6,8 +6,8 @@ class Grid extends Component {
     super(props);
     this.state = {
       position: [0, 0],
-      xGrids: 6,
-      yGrids: 3,
+      xGrids: 0,
+      yGrids: 0,
       left: 0,
       right: 0,
       direction: 90,
@@ -40,11 +40,11 @@ class Grid extends Component {
 
     let value = e.target.value;
     // if (value === " ") {
-    if (handleLength + 1 <= 3) {
-      this.setState({ [e.target.name]: value });
-    } else {
-      this.setState({ [e.target.name]: "" });
-    }
+    // if (handleLength + 1 <= 3) {
+    this.setState({ [e.target.name]: value });
+    // } else {
+    //   this.setState({ [e.target.name]: "" });
+    // }
     // this.setState({ [e.target.name]: value });
     // }
     // console.log("testing value", e.target.value, value);
@@ -160,7 +160,8 @@ class Grid extends Component {
           yGridNumber={this.state.yGrids}
         />
         <div>
-          Current position is: {this.state.position} {this.state.dir}
+          Current position is: (x: {this.state.position[0]}, y:{" "}
+          {this.state.position[1]}) {this.state.dir}
         </div>
         <button
           className="direction"
