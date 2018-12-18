@@ -136,10 +136,15 @@ class Grid extends Component {
       );
     const x = parseInt(split[0], 10);
     const y = parseInt(split[1], 10);
-    if (typeof x === "Number" && typeof y == "Number") {
-      console.log("first", x, "second", y);
+    if (0 <= x && 0 <= y) {
+      console.log("first", x, "second", y, typeof NaN);
+      this.setState({ xGrids: x, yGrids: y });
     } else {
-      console.log("first wrong", x, "second wrong", y);
+      this.setState({ inputGrid: "" });
+      window.alert(
+        "The input for the x and y values of the grid need to be integers"
+      );
+      // console.log("first wrong", x, "second wrong", y);
     }
   };
   sendCommands = () => {
