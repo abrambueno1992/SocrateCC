@@ -31,12 +31,7 @@ class Grid extends Component {
     ) {
       this.setState({ [e.target.name]: value });
     }
-    // let split = e.target.value.split(" ");
-    // const split = parseInt(e.target.value, 10);
-    // if (typeof split[0] === "number") {
-    //   this.setState({ xGrids: split[0], yGrids: split[1] });
-    // }
-    // if ()
+
     return;
   };
   handleGrid = e => {
@@ -133,6 +128,8 @@ class Grid extends Component {
     // this.setState({});
     console.log("test");
   };
+  createGrid = () => {};
+  sendCommands = () => {};
   render() {
     return (
       <div>
@@ -181,7 +178,8 @@ class Grid extends Component {
             value={this.state.inputGrid}
             onChange={this.handleGrid}
           />
-          {this.state.inputGrid}
+          <button onClick={this.createGrid}>Create Grid</button>
+          {/* {this.state.inputGrid} */}
           <h3>
             Enter instructions for rover, sequential non-space separated (L =
             left, R = right, M = move): LRM
@@ -193,7 +191,8 @@ class Grid extends Component {
             value={this.state.inputCommand}
             onChange={this.handleChange}
           />
-          {this.state.inputCommand}
+          <button onClick={this.sendCommands}>Send Commands</button>
+          {/* {this.state.inputCommand} */}
         </div>
       </div>
     );
