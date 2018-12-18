@@ -58,13 +58,13 @@ class Grid extends Component {
     let x = this.state.position[0];
     let y = this.state.position[1];
     if (direction === "N") {
-      y += 1;
-    } else if (direction === "S") {
-      y -= 1;
-    } else if (direction === "E") {
       x += 1;
-    } else {
+    } else if (direction === "S") {
       x -= 1;
+    } else if (direction === "E") {
+      y += 1;
+    } else {
+      y -= 1;
     }
     if (x < 0 || y < 0) {
       this.setState({ danger: true });
