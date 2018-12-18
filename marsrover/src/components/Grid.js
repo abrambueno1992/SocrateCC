@@ -10,7 +10,8 @@ class Grid extends Component {
       right: 0,
       direction: 90,
       angle: 90,
-      dir: "N"
+      dir: "N",
+      danger: false
     };
   }
   handleChange = e => {
@@ -51,7 +52,25 @@ class Grid extends Component {
     }
   };
 
-  handleSubmit = () => {
+  handleMove = e => {
+    e.preventDefault();
+    let direction = this.state.dir;
+    let x = this.state.position[0];
+    let y = this.state.position[1];
+    if (direction === "N") {
+      y += 1;
+    } else if (direction === "S") {
+      y -= 1;
+    } else if (direction === "E") {
+      x += 1;
+    } else {
+      x -= 1;
+    }
+    if (x < 0 || y < 0) {
+      this.setState({ danger: true });
+      return;
+    }
+    this.setState({ position: [x, y] });
     // this.setState({});
     console.log("test");
   };
@@ -70,7 +89,9 @@ class Grid extends Component {
         >
           Left
         </button>
-        <button className="move">Move</button>
+        <button className="move" onClick={this.handleMove}>
+          Move
+        </button>
         <button
           className="direction"
           name="Rdirection"
@@ -81,6 +102,11 @@ class Grid extends Component {
         </button>
         <div>
           Position moved to: {this.state.dir} {this.state.direction}{" "}
+          {this.state.danger ? (
+            <h1>
+              The rover was going to be out of boundary, move was prevented.
+            </h1>
+          ) : null}
         </div>
       </div>
     );
