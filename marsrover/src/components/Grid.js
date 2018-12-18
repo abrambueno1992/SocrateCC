@@ -6,17 +6,20 @@ class Grid extends Component {
     super(props);
     this.state = {
       position: [0, 0],
-      xGrids: 12,
-      yGrids: 10,
+      xGrids: 6,
+      yGrids: 3,
       left: 0,
       right: 0,
       direction: 90,
       angle: 90,
       dir: "N",
-      danger: false
+      danger: false,
+      inputCommand: "",
+      inputGrid: ""
     };
   }
-  handleChange = e => {
+  handleChange = e => {};
+  handleRotation = e => {
     // e.preventDefault();
     let currentDir = this.state.direction;
     let change = e.target.name === "Ldirection" ? 90 : 270;
@@ -99,7 +102,7 @@ class Grid extends Component {
         <button
           className="direction"
           name="Ldirection"
-          onClick={this.handleChange}
+          onClick={this.handleRotation}
           value={this.state.left}
         >
           Left
@@ -110,7 +113,7 @@ class Grid extends Component {
         <button
           className="direction"
           name="Rdirection"
-          onClick={this.handleChange}
+          onClick={this.handleRotation}
           value={this.state.right}
         >
           Right
@@ -122,6 +125,27 @@ class Grid extends Component {
               The rover was going to be out of boundary, move was prevented.
             </h1>
           ) : null}
+        </div>
+        <div>
+          <h3>Enter grid size, space separated: x y</h3>
+          <input
+            type="text"
+            name="grid"
+            placeHolder="x y"
+            value={this.state.inputGrid}
+            onChange={this.handleChange}
+          />
+          <h3>
+            Enter instructions for rover, sequential non-space separated (L =
+            left, R = right, M = move): LRM
+          </h3>
+          <input
+            type="text"
+            name="commands"
+            placeHolder="LMLMLMLMM"
+            value={this.state.inputCommand}
+            onChange={this.handleChange}
+          />
         </div>
       </div>
     );
