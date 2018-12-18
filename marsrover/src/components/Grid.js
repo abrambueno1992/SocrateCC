@@ -18,7 +18,53 @@ class Grid extends Component {
       inputGrid: ""
     };
   }
-  handleChange = e => {};
+  handleChange = e => {
+    e.preventDefault();
+    let value = e.target.value.toUpperCase();
+    let split = value.split("");
+    console.log(value, split, split[-1]);
+    if (
+      split[split.length - 1] === "L" ||
+      split[split.length - 1] === "R" ||
+      split[split.length - 1] === "M" ||
+      split[split.length - 1] === undefined
+    ) {
+      this.setState({ [e.target.name]: value });
+    }
+    // let split = e.target.value.split(" ");
+    // const split = parseInt(e.target.value, 10);
+    // if (typeof split[0] === "number") {
+    //   this.setState({ xGrids: split[0], yGrids: split[1] });
+    // }
+    // if ()
+    return;
+  };
+  handleGrid = e => {
+    e.preventDefault();
+    let handleLength = this.state.inputGrid.split("").length;
+
+    let value = e.target.value;
+    // if (value === " ") {
+    if (handleLength + 1 <= 3) {
+      this.setState({ [e.target.name]: value });
+    } else {
+      this.setState({ [e.target.name]: "" });
+    }
+    // this.setState({ [e.target.name]: value });
+    // }
+    // console.log("testing value", e.target.value, value);
+    // value = parseInt(value, 10);
+    // if (typeof value === "number") {
+    //   this.setState({ [e.target.name]: value });
+    // }
+    console.log(
+      "testing GRID GRID",
+      e.target.value,
+      typeof value,
+      handleLength
+    );
+    return;
+  };
   handleRotation = e => {
     // e.preventDefault();
     let currentDir = this.state.direction;
@@ -130,22 +176,24 @@ class Grid extends Component {
           <h3>Enter grid size, space separated: x y</h3>
           <input
             type="text"
-            name="grid"
+            name="inputGrid"
             placeHolder="x y"
             value={this.state.inputGrid}
-            onChange={this.handleChange}
+            onChange={this.handleGrid}
           />
+          {this.state.inputGrid}
           <h3>
             Enter instructions for rover, sequential non-space separated (L =
             left, R = right, M = move): LRM
           </h3>
           <input
             type="text"
-            name="commands"
+            name="inputCommand"
             placeHolder="LMLMLMLMM"
             value={this.state.inputCommand}
             onChange={this.handleChange}
           />
+          {this.state.inputCommand}
         </div>
       </div>
     );
