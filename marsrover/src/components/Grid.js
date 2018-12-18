@@ -130,13 +130,17 @@ class Grid extends Component {
   };
   createGrid = () => {
     let split = this.state.inputGrid.split(" ");
-    if (split.length !== 3)
+    if (split.length !== 2)
       window.alert(
         "The grid needs to have an x integer value separated by a comma and followed by a y integer value"
       );
     const x = parseInt(split[0], 10);
     const y = parseInt(split[1], 10);
-    console.log("first", split[0], "second", split[1]);
+    if (typeof x === "Number" && typeof y == "Number") {
+      console.log("first", x, "second", y);
+    } else {
+      console.log("first wrong", x, "second wrong", y);
+    }
   };
   sendCommands = () => {
     let split = this.state.inputCommand.split("");
