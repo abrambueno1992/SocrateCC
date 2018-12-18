@@ -25,21 +25,26 @@ const gridDisplay = props => {
     <div>
       {/* <Rover angle={props.angle} /> */}
 
-      {yGrids.map(row => {
-        return (
-          <div className="column">
-            {xGrids.map(column => {
-              if (row === xPos && yPos === column)
-                return <Rover style={{ height: "100%" }} angle={props.angle} />;
-              // if (row !== xPos && column !== yPos) {
-              return <div className="row" />;
-              // } else {
-              //   return <Rover className="row" angle={props.angle} />;
-              // }
-            })}
-          </div>
-        );
-      })}
+      {yGrids
+        .slice(0)
+        .reverse()
+        .map(row => {
+          return (
+            <div className="column">
+              {xGrids.map((column, x, total) => {
+                if (row === xPos && yPos === column)
+                  return (
+                    <Rover style={{ height: "100%" }} angle={props.angle} />
+                  );
+                // if (row !== xPos && column !== yPos) {
+                return <div className="row" />;
+                // } else {
+                //   return <Rover className="row" angle={props.angle} />;
+                // }
+              })}
+            </div>
+          );
+        })}
     </div>
   );
 };
