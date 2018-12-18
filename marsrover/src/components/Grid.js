@@ -99,7 +99,7 @@ class Grid extends Component {
   };
 
   handleMove = e => {
-    e.preventDefault();
+    // e.preventDefault();
     let direction = this.state.dir;
     // position = (y, x) ... values starting at (0,0)
     let x = this.state.position[1];
@@ -147,8 +147,35 @@ class Grid extends Component {
       // console.log("first wrong", x, "second wrong", y);
     }
   };
-  sendCommands = () => {
+  sendCommands = e => {
     let split = this.state.inputCommand.split("");
+    // let x = this.state.position[1];
+    // let y = this.state.position[0];
+    split.forEach((each, i) => {
+      if (each !== "M") {
+        let currentDir = this.state.direction;
+        let change = each === "L" ? 90 : 270;
+        currentDir += change;
+        if (change === 270) {
+          if (currentDir >= 360) {
+            currentDir -= 360;
+          } else {
+          }
+        }
+        currentDir = currentDir === 360 ? 0 : currentDir;
+        if (currentDir === 90) {
+          this.setState({ direction: currentDir, dir: "N", angle: 90 });
+        } else if (currentDir === 180) {
+          this.setState({ direction: currentDir, dir: "W", angle: 0 });
+        } else if (currentDir === 270) {
+          this.setState({ direction: currentDir, dir: "S", angle: 270 });
+        } else {
+          this.setState({ direction: currentDir, dir: "E", angle: 180 });
+        }
+      } else {
+        this.handleMove();
+      }
+    });
   };
   render() {
     return (
