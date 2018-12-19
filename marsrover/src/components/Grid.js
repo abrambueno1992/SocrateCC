@@ -169,7 +169,40 @@ class Grid extends Component {
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
-        this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
+        // this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
+        if (pDir === "N") {
+          this.setState({
+            direction: 90,
+            dir: "N",
+            angle: 90,
+            position: [xCoor, yCoor],
+            coordinates: ""
+          });
+        } else if (pDir === "W") {
+          this.setState({
+            direction: 180,
+            dir: "W",
+            angle: 0,
+            position: [xCoor, yCoor],
+            coordinates: ""
+          });
+        } else if (pDir === "S") {
+          this.setState({
+            direction: 270,
+            dir: "S",
+            angle: 270,
+            position: [xCoor, yCoor],
+            coordinates: ""
+          });
+        } else {
+          this.setState({
+            direction: 0,
+            dir: "E",
+            angle: 180,
+            position: [xCoor, yCoor],
+            coordinates: ""
+          });
+        }
       } else {
         this.setState({ coordinates: "" });
         window.alert("The direction needs to be N, S, E or W");
