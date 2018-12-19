@@ -163,8 +163,8 @@ class Grid extends Component {
         "The coordinates needs an x integer separated by a space, followed by a y integer separated by another space, and finally a direction N,S,E, or W"
       );
     }
-    const xCoor = parseInt(coordinates[0], 10);
-    const yCoor = parseInt(coordinates[1], 10);
+    const xCoor = parseInt(coordinates[1], 10);
+    const yCoor = parseInt(coordinates[0], 10);
     const pDir = coordinates[2].toUpperCase();
 
     if (0 <= xCoor && 0 <= yCoor) {
