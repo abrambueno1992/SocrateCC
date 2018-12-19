@@ -8,6 +8,7 @@ class Grid extends Component {
       // rover position
       position: [0, 0],
       inputCoordinates: "",
+      inputCoordinates2: "",
 
       // grid dimensions
       xGrids: 0,
@@ -29,6 +30,7 @@ class Grid extends Component {
 
       // input for the commands
       inputCommand: "",
+      inputCommand2: "",
 
       // the queue of commands from input
       // converted to an array to keep track
@@ -50,7 +52,10 @@ class Grid extends Component {
     ) {
       this.setState({ [e.target.name]: value });
     }
-    if (e.target.name === "inputCoordinates") {
+    if (
+      e.target.name === "inputCoordinates" ||
+      e.target.name === "inputCoordinates2"
+    ) {
       console.log("value of coordinates", value, this.state.inputCoordinates);
       this.setState({ [e.target.name]: value });
     }
@@ -336,6 +341,13 @@ class Grid extends Component {
             value={this.state.inputCoordinates}
             onChange={this.handleChange}
           />
+          <input
+            type="text"
+            name="inputCoordinates2"
+            placeHolder="3 5 N"
+            value={this.state.inputCoordinates2}
+            onChange={this.handleChange}
+          />
           <button onClick={this.createGrid}>Create Grid</button>
           <h3>
             Enter instructions for rover, sequential non-space separated (L =
@@ -346,6 +358,13 @@ class Grid extends Component {
             name="inputCommand"
             placeHolder="LMLMLMLMM"
             value={this.state.inputCommand}
+            onChange={this.handleChange}
+          />
+          <input
+            type="text"
+            name="inputCommand2"
+            placeHolder="LMLMLMLMM"
+            value={this.state.inputCommand2}
             onChange={this.handleChange}
           />
           <button onClick={this.sendCommands}>Send Commands</button>
