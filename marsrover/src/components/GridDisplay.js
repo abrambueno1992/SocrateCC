@@ -1,10 +1,15 @@
 import React from "react";
 import "./GridDisplay.css";
 import "./Grid.css";
+import rover from "../rover.png";
 const Rover = props => {
   return (
     <div className="rover" style={{ transform: `rotate(${props.angle}deg)` }}>
-      <div className="head">[X]</div>
+      <img
+        style={{ widht: "85%", height: "85%", transform: `rotate(${-90}deg)` }}
+        src={rover}
+      />
+      {/* <div className="head">[X]</div> */}
     </div>
   );
 };
@@ -38,7 +43,7 @@ const gridDisplay = props => {
               {xGrids.map((column, x, total) => {
                 if (row === xPos && yPos === column)
                   return (
-                    <Rover style={{ height: "100%" }} angle={props.angle} />
+                    <Rover style={{ height: "3em" }} angle={props.angle} />
                   );
                 // if (row !== xPos && column !== yPos) {
                 return <div className="row" />;
