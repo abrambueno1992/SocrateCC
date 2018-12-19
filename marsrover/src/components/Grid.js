@@ -5,11 +5,13 @@ class Grid extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // rover position
       position: [0, 0],
+
+      // grid dimensions
       xGrids: 0,
       yGrids: 0,
-      left: 0,
-      right: 0,
+
       direction: 90,
       angle: 90,
       dir: "N",
@@ -198,6 +200,11 @@ class Grid extends Component {
   };
 
   render() {
+    console.log(
+      "What is the left and right values for",
+      this.state.left,
+      this.state.right
+    );
     return (
       <div>
         <GridDisplay
@@ -214,7 +221,6 @@ class Grid extends Component {
           className="direction"
           name="Ldirection"
           onClick={this.handleRotation}
-          value={this.state.left}
         >
           Left
         </button>
@@ -225,7 +231,6 @@ class Grid extends Component {
           className="direction"
           name="Rdirection"
           onClick={this.handleRotation}
-          value={this.state.right}
         >
           Right
         </button>
