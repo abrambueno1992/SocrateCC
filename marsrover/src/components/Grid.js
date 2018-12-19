@@ -137,8 +137,10 @@ class Grid extends Component {
       );
 
     // Both elements of the split array are converted to decimal integers
-    const x = parseInt(split[0], 10);
-    const y = parseInt(split[1], 10);
+    // 1 is added because input is the outermost coordinates for x && y
+    // matrix starts at 0, so 5 5 would be 4 4, so +1 is needed
+    const x = parseInt(split[0], 10) + 1;
+    const y = parseInt(split[1], 10) + 1;
 
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
