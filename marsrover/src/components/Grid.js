@@ -23,7 +23,6 @@ class Grid extends Component {
     e.preventDefault();
     let value = e.target.value.toUpperCase();
     let split = value.split("");
-    console.log(value, split, split[-1]);
     if (
       split[split.length - 1] === "L" ||
       split[split.length - 1] === "R" ||
@@ -37,32 +36,11 @@ class Grid extends Component {
   };
   handleGrid = e => {
     e.preventDefault();
-    let handleLength = this.state.inputGrid.split("").length;
-
     let value = e.target.value;
-    // if (value === " ") {
-    // if (handleLength + 1 <= 3) {
     this.setState({ [e.target.name]: value });
-    // } else {
-    //   this.setState({ [e.target.name]: "" });
-    // }
-    // this.setState({ [e.target.name]: value });
-    // }
-    // console.log("testing value", e.target.value, value);
-    // value = parseInt(value, 10);
-    // if (typeof value === "number") {
-    //   this.setState({ [e.target.name]: value });
-    // }
-    console.log(
-      "testing GRID GRID",
-      e.target.value,
-      typeof value,
-      handleLength
-    );
     return;
   };
   handleRotation = e => {
-    // e.preventDefault();
     let currentDir = this.state.direction;
     let change = e.target.name === "Ldirection" ? 90 : 270;
     currentDir += change;
@@ -73,12 +51,7 @@ class Grid extends Component {
       }
     }
     currentDir = currentDir === 360 ? 0 : currentDir;
-    console.log(
-      "new direction to x degrees",
-      change,
-      "degrees updated to: ",
-      currentDir
-    );
+
     // Angle transformation from regular angles (0 at the right, counter clockwise)
     // to transform angles (0 at the left, clockwise)...
     // 360 => 180 ... complete revolution
@@ -99,12 +72,16 @@ class Grid extends Component {
     }
   };
 
-  handleMove = e => {
-    // e.preventDefault();
+  handleMove = () => {
+    // direction held in state dir... default dir = "N"
     let direction = this.state.dir;
+
     // position = (y, x) ... values starting at (0,0)
     let x = this.state.position[1];
     let y = this.state.position[0];
+
+    // Dimension of the grid held in state xGrids and yGrids
+    // default dimension is 0 by 0
     const { xGrids, yGrids } = this.state;
     if (direction === "N") {
       y += 1;
@@ -115,46 +92,44 @@ class Grid extends Component {
     } else {
       x -= 1;
     }
+
+    // Make sure x and y are not out of boundary, below 0 0
     if (x < 0 || y < 0) {
       this.setState({ danger: true });
       return;
     }
-    console.log("Change x:", x, "y:", y);
+
+    // Make sure x && y are not out of boundary, xGrids && yGrids are maximum
     if (x >= xGrids || y >= yGrids) {
       this.setState({ danger: true });
       return;
     }
+
     // position = (y, x) ... values starting at (0,0)
     this.setState({ position: [y, x], danger: false });
-    // this.setState({});
-    console.log("test");
   };
   createGrid = () => {
     let split = this.state.inputGrid.split(" ");
     if (split.length !== 2)
       window.alert(
-        "The grid needs to have an x integer value separated by a comma and followed by a y integer value"
+        "The grid needs to have an x integer value separated by a space and followed by a y integer value"
       );
     const x = parseInt(split[0], 10);
     const y = parseInt(split[1], 10);
     if (0 <= x && 0 <= y) {
-      console.log("first", x, "second", y, typeof NaN);
       this.setState({ xGrids: x, yGrids: y });
     } else {
       this.setState({ inputGrid: "" });
       window.alert(
         "The input for the x and y values of the grid need to be integers"
       );
-      // console.log("first wrong", x, "second wrong", y);
     }
   };
   sendCommands = e => {
     let split = this.state.inputCommand.split("");
-    console.log("COmmands for input", split);
     let each = split[0];
     split.shift();
 
-    console.log("Each command", each);
     if (each !== "M") {
       let currentDir = this.state.direction;
       let change = each === "L" ? 90 : 270;
@@ -199,18 +174,14 @@ class Grid extends Component {
       this.setState({ commandQueu: split });
       this.handleMove();
     }
-    // });
   };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.commandQueu !== this.state.commandQueu) {
       if (this.state.commandQueu.length !== 0) {
-        console.log("cdm, commands in queu", this.state.commandQueu);
         const split = [];
         this.state.commandQueu.forEach(each => split.push(each));
-        console.log("queue stacked", split);
         let each = split[0];
         split.shift();
-        console.log("New queue", split, each, typeof each);
 
         if (each !== "M") {
           let currentDir = this.state.direction;
@@ -270,8 +241,8 @@ class Grid extends Component {
           yGridNumber={this.state.yGrids}
         />
         <div>
-          Current position is: (x: {this.state.position[0]}, y:{" "}
-          {this.state.position[1]}) {this.state.dir}
+          Current position is: (x: {this.state.position[1]}, y:{" "}
+          {this.state.position[0]}) {this.state.dir}
         </div>
         <button
           className="direction"
@@ -310,7 +281,6 @@ class Grid extends Component {
             onChange={this.handleGrid}
           />
           <button onClick={this.createGrid}>Create Grid</button>
-          {/* {this.state.inputGrid} */}
           <h3>
             Enter instructions for rover, sequential non-space separated (L =
             left, R = right, M = move): LRM
@@ -323,7 +293,6 @@ class Grid extends Component {
             onChange={this.handleChange}
           />
           <button onClick={this.sendCommands}>Send Commands</button>
-          {/* {this.state.inputCommand} */}
         </div>
       </div>
     );
