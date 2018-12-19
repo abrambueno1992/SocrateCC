@@ -133,10 +133,10 @@ class Grid extends Component {
     }
   };
   sendCommands = e => {
-    let split =
+    const split =
       this.state.inputCommand !== ""
         ? this.state.inputCommand.split("")
-        : this.starting.commandQueu;
+        : this.state.commandQueu.map(each => each);
     let each = split[0];
     split.shift();
 
@@ -192,55 +192,7 @@ class Grid extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.commandQueu !== this.state.commandQueu) {
       if (this.state.commandQueu.length !== 0) {
-        const split = [];
-        this.state.commandQueu.forEach(each => split.push(each));
-        let each = split[0];
-        split.shift();
-
-        if (each !== "M") {
-          let currentDir = this.state.direction;
-          let change = each === "L" ? 90 : 270;
-          currentDir += change;
-          if (change === 270) {
-            if (currentDir >= 360) {
-              currentDir -= 360;
-            } else {
-            }
-          }
-          currentDir = currentDir === 360 ? 0 : currentDir;
-          if (currentDir === 90) {
-            this.setState({
-              direction: currentDir,
-              dir: "N",
-              angle: 90,
-              commandQueu: split
-            });
-          } else if (currentDir === 180) {
-            this.setState({
-              direction: currentDir,
-              dir: "W",
-              angle: 0,
-              commandQueu: split
-            });
-          } else if (currentDir === 270) {
-            this.setState({
-              direction: currentDir,
-              dir: "S",
-              angle: 270,
-              commandQueu: split
-            });
-          } else {
-            this.setState({
-              direction: currentDir,
-              dir: "E",
-              angle: 180,
-              commandQueu: split
-            });
-          }
-        } else {
-          this.setState({ commandQueu: split });
-          this.handleMove();
-        }
+        this.sendCommands();
       }
     }
   };
