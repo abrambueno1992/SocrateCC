@@ -7,6 +7,7 @@ class Grid extends Component {
     this.state = {
       // rover position
       position: [0, 0],
+      inputCoordinates: "",
 
       // grid dimensions
       xGrids: 0,
@@ -47,6 +48,10 @@ class Grid extends Component {
       split[split.length - 1] === "M" ||
       split[split.length - 1] === undefined
     ) {
+      this.setState({ [e.target.name]: value });
+    }
+    if (e.target.name === "inputCoordinates") {
+      console.log("value of coordinates", value, this.state.inputCoordinates);
       this.setState({ [e.target.name]: value });
     }
 
@@ -151,6 +156,29 @@ class Grid extends Component {
         "The input for the x and y values of the grid need to be integers"
       );
     }
+
+    let coordinates = this.state.inputCoordinates.split(" ");
+    if (coordinates.length !== 3) {
+      window.alert(
+        "The coordinates needs an x integer separated by a space, followed by a y integer separated by another space, and finally a direction N,S,E, or W"
+      );
+    }
+    const xCoor = parseInt(coordinates[0], 10);
+    const yCoor = parseInt(coordinates[1], 10);
+    const pDir = coordinates[2].toUpperCase();
+
+    if (0 <= xCoor && 0 <= yCoor) {
+      if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
+        this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
+      } else {
+        this.setState({ coordinates: "" });
+        window.alert("The direction needs to be N, S, E or W");
+      }
+    } else {
+      this.setState({ coordinates: "" });
+      window.alert("The coordinates need to be integers for both x and y");
+    }
+    console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
   sendCommands = e => {
     const split =
@@ -256,13 +284,24 @@ class Grid extends Component {
           ) : null}
         </div>
         <div>
-          <h3>Enter grid size, space separated: x y</h3>
+          <h3>Enter the max x and y coordinates, space separated: x y</h3>
           <input
             type="text"
             name="inputGrid"
             placeHolder="x y"
             value={this.state.inputGrid}
             onChange={this.handleGrid}
+          />
+          <h3>
+            Enter the coordinates of the rover: x y direction. x and y are
+            integers, direction = N,S,E,W
+          </h3>
+          <input
+            type="text"
+            name="inputCoordinates"
+            placeHolder="3 5 N"
+            value={this.state.inputCoordinates}
+            onChange={this.handleChange}
           />
           <button onClick={this.createGrid}>Create Grid</button>
           <h3>
