@@ -133,7 +133,10 @@ class Grid extends Component {
     }
   };
   sendCommands = e => {
-    let split = this.state.inputCommand.split("");
+    let split =
+      this.state.inputCommand !== ""
+        ? this.state.inputCommand.split("")
+        : this.starting.commandQueu;
     let each = split[0];
     split.shift();
 
@@ -153,32 +156,36 @@ class Grid extends Component {
           direction: currentDir,
           dir: "N",
           angle: 90,
-          commandQueu: split
+          commandQueu: split,
+          inputCommand: ""
         });
       } else if (currentDir === 180) {
         this.setState({
           direction: currentDir,
           dir: "W",
           angle: 0,
-          commandQueu: split
+          commandQueu: split,
+          inputCommand: ""
         });
       } else if (currentDir === 270) {
         this.setState({
           direction: currentDir,
           dir: "S",
           angle: 270,
-          commandQueu: split
+          commandQueu: split,
+          inputCommand: ""
         });
       } else {
         this.setState({
           direction: currentDir,
           dir: "E",
           angle: 180,
-          commandQueu: split
+          commandQueu: split,
+          inputCommand: ""
         });
       }
     } else {
-      this.setState({ commandQueu: split });
+      this.setState({ commandQueu: split, inputCommand: "" });
       this.handleMove();
     }
   };
