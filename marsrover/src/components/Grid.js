@@ -106,11 +106,20 @@ class Grid extends Component {
 
   handleMove = () => {
     // direction held in state dir... default dir = "N"
-    let direction = this.state.dir;
+    let direction =
+      this.state.commandQueu[0] !== undefined
+        ? this.state.dir
+        : this.state.dir2;
 
     // position = (y, x) ... values starting at (0,0)
-    let x = this.state.position[1];
-    let y = this.state.position[0];
+    let x =
+      this.state.commandQueu[0] !== undefined
+        ? this.state.position[1]
+        : this.state.position2[1];
+    let y =
+      this.state.commandQueu[0] !== undefined
+        ? this.state.position[0]
+        : this.state.position2[0];
 
     // Dimension of the grid held in state xGrids and yGrids
     // default dimension is 0 by 0
@@ -138,7 +147,11 @@ class Grid extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.setState({ position: [y, x], danger: false });
+    if (this.state.commandQueu[0] !== undefined) {
+      this.setState({ position: [y, x], danger: false });
+    } else {
+      this.setState({ position2: [y, x], danger: false });
+    }
   };
   createGrid = () => {
     // Input is a string, so split converts the string to an array
@@ -424,11 +437,13 @@ class Grid extends Component {
     if (prevState.commandQueu !== this.state.commandQueu) {
       if (this.state.commandQueu.length !== 0) {
         this.sendCommands();
-      } 
-      if (this.state.commandQueu.length === 0 && this.state.inputCommand2 !== "") {
+      }
+      if (
+        this.state.commandQueu.length === 0 &&
+        this.state.inputCommand2 !== ""
+      ) {
         this.sendCommands();
-      } 
-      
+      }
     }
 
     if (prevState.commandQueu2 !== this.state.commandQueu2) {
@@ -450,8 +465,15 @@ class Grid extends Component {
           position2={this.state.position2}
         />
         <div>
-          Current position is: (x: {this.state.position[1]}, y:{" "}
-          {this.state.position[0]}) {this.state.dir}
+          <h3>Current positions of Rovers</h3>
+          <span>
+            Rover 1: (x: {this.state.position[1]}, y:
+            {this.state.position[0]}) {this.state.dir}
+          </span>
+          <span>
+            Rover 2: (x: {this.state.position2[1]}, y:
+            {this.state.position2[0]}) {this.state.dir2}
+          </span>
         </div>
         <button
           className="direction"
