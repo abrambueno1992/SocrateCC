@@ -424,7 +424,11 @@ class Grid extends Component {
     if (prevState.commandQueu !== this.state.commandQueu) {
       if (this.state.commandQueu.length !== 0) {
         this.sendCommands();
-      }
+      } 
+      if (this.state.commandQueu.length === 0 && this.state.inputCommand2 !== "") {
+        this.sendCommands();
+      } 
+      
     }
 
     if (prevState.commandQueu2 !== this.state.commandQueu2) {
