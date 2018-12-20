@@ -7,6 +7,7 @@ class Grid extends Component {
     this.state = {
       // rover position
       position: [0, 0],
+      position2: [0, 0],
       inputCoordinates: "",
       inputCoordinates2: "",
 
@@ -16,14 +17,16 @@ class Grid extends Component {
 
       // Clockwise angle
       direction: 90,
+      direction2: 90,
 
       // Counter-clockwise angle
       // needed for CSS transform
       angle: 90,
+      angle2: 90,
 
       // Direction as NSEW
       dir: "N",
-
+      dir2: "N",
       // When the rover was going out of boundary.
       //  Will stop before going out of boundary
       danger: false,
@@ -161,8 +164,12 @@ class Grid extends Component {
         "The input for the x and y values of the grid need to be integers"
       );
     }
+    this.setCoordinates(this.state.inputCoordinates);
+    this.setCoordinates(this.state.inputCoordinates2, true);
+  };
 
-    let coordinates = this.state.inputCoordinates.split(" ");
+  setCoordinates = (inputCoordinates, flag) => {
+    let coordinates = inputCoordinates.split(" ");
     if (coordinates.length !== 3) {
       window.alert(
         "The coordinates needs an x integer separated by a space, followed by a y integer separated by another space, and finally a direction N,S,E, or W"
@@ -171,50 +178,105 @@ class Grid extends Component {
     const xCoor = parseInt(coordinates[1], 10);
     const yCoor = parseInt(coordinates[0], 10);
     const pDir = coordinates[2].toUpperCase();
+    const stateOne = {
+      direction: 270,
+      dir: "S",
+      angle: 270,
+      position: [xCoor, yCoor],
+      coordinates: ""
+    };
+
+    const stateTwo = {
+      direction2: 90,
+      dir2: "N",
+      angle2: 90,
+      position2: [xCoor, yCoor],
+      coordinates2: ""
+    };
+    const state = flag === true ? stateTwo : stateOne;
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
         // this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
         if (pDir === "N") {
-          this.setState({
-            direction: 90,
-            dir: "N",
-            angle: 90,
-            position: [xCoor, yCoor],
-            coordinates: ""
-          });
+          if (flag === true) {
+            state.direction2 = 90;
+            state.dir2 = "N";
+            state.angle2 = 90;
+            state.position2 = [xCoor, yCoor];
+            state.coordinates2 = "";
+          } else {
+            state.direction = 90;
+            state.dir = "N";
+            state.angle = 90;
+            state.position = [xCoor, yCoor];
+            state.coordinates = "";
+          }
+
+          this.setState(state);
         } else if (pDir === "W") {
-          this.setState({
-            direction: 180,
-            dir: "W",
-            angle: 0,
-            position: [xCoor, yCoor],
-            coordinates: ""
-          });
+          if (flag === true) {
+            state.direction2 = 180;
+            state.dir2 = "W";
+            state.angle2 = 0;
+            state.position2 = [xCoor, yCoor];
+            state.coordinates2 = "";
+          } else {
+            state.direction = 180;
+            state.dir = "W";
+            state.angle = 0;
+            state.position = [xCoor, yCoor];
+            state.coordinates = "";
+          }
+          this.setState(state);
         } else if (pDir === "S") {
-          this.setState({
-            direction: 270,
-            dir: "S",
-            angle: 270,
-            position: [xCoor, yCoor],
-            coordinates: ""
-          });
+          if (flag === true) {
+            state.direction2 = 270;
+            state.dir2 = "S";
+            state.angle2 = 270;
+            state.position2 = [xCoor, yCoor];
+            state.coordinates2 = "";
+          } else {
+            state.direction = 270;
+            state.dir = "S";
+            state.angle = 270;
+            state.position = [xCoor, yCoor];
+            state.coordinates = "";
+          }
+          this.setState(state);
         } else {
-          this.setState({
-            direction: 0,
-            dir: "E",
-            angle: 180,
-            position: [xCoor, yCoor],
-            coordinates: ""
-          });
+          if (flag === true) {
+            state.direction2 = 0;
+            state.dir2 = "E";
+            state.angle2 = 180;
+            state.position2 = [xCoor, yCoor];
+            state.coordinates2 = "";
+          } else {
+            state.direction = 0;
+            state.dir = "E";
+            state.angle = 180;
+            state.position = [xCoor, yCoor];
+            state.coordinates = "";
+          }
+          this.setState(state);
         }
       } else {
-        this.setState({ coordinates: "" });
-        window.alert("The direction needs to be N, S, E or W");
+        if (flag === true) {
+          this.setState({ coordinates2: "" });
+          window.alert("The direction needs to be N, S, E or W");
+        } else {
+          this.setState({ coordinates: "" });
+          window.alert("The direction needs to be N, S, E or W");
+        }
       }
     } else {
-      this.setState({ coordinates: "" });
-      window.alert("The coordinates need to be integers for both x and y");
+      if (flag === true) {
+        this.setState({ coordinates2: "" });
+        window.alert("The coordinates need to be integers for both x and y");
+      } else {
+        this.setState({ coordinates: "" });
+        window.alert("The coordinates need to be integers for both x and y");
+      }
     }
     console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
@@ -291,6 +353,8 @@ class Grid extends Component {
           position={this.state.position}
           xGridNumber={this.state.xGrids}
           yGridNumber={this.state.yGrids}
+          angle2={this.state.angle2}
+          position2={this.state.position2}
         />
         <div>
           Current position is: (x: {this.state.position[1]}, y:{" "}

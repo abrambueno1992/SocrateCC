@@ -28,6 +28,8 @@ const gridDisplay = props => {
   }
   const xPos = props.position[0];
   const yPos = props.position[1];
+  const xPos2 = props.position2[0];
+  const yPos2 = props.position2[1];
   console.log("x", xPos, "y", yPos);
 
   return (
@@ -45,6 +47,11 @@ const gridDisplay = props => {
                   return (
                     <Rover style={{ height: "3em" }} angle={props.angle} />
                   );
+                if (row === xPos2 && column === yPos2) {
+                  return (
+                    <Rover style={{ height: "3em" }} angle={props.angle2} />
+                  );
+                }
                 // if (row !== xPos && column !== yPos) {
                 return <div className="row" />;
                 // } else {
