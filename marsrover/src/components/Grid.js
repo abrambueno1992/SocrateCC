@@ -38,6 +38,7 @@ class Grid extends Component {
       // the queue of commands from input
       // converted to an array to keep track
       commandQueu: [],
+      commandQueu2: [],
 
       // the grid dimensions from input
       inputGrid: ""
@@ -281,16 +282,38 @@ class Grid extends Component {
     console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
   sendCommands = e => {
-    const split =
-      this.state.inputCommand !== ""
-        ? this.state.inputCommand.split("")
-        : this.state.commandQueu.map(each => each);
-    let each = split[0];
-    split.shift();
+    let each;
+    const split = [];
+    if (
+      this.state.inputCommand !== "" ||
+      this.state.commandQueu[0] !== undefined
+    ) {
+      let splitTemp =
+        this.state.inputCommand !== ""
+          ? this.state.inputCommand.split("")
+          : this.state.commandQueu.map(each => each);
+      splitTemp.forEach(each => split.push(each));
+      each = split[0];
+      split.shift();
+    } else {
+      let splitTemp =
+        this.state.inputCommand2 !== ""
+          ? this.state.inputCommand2.split("")
+          : this.state.commandQueu2.map(each => each);
+      splitTemp.forEach(each => split.push(each));
+      each = split[0];
+      split.shift();
+    }
+    console.log("SPlit values", split, each);
 
     if (each !== "M") {
-      let currentDir = this.state.direction;
+      let currentDir =
+        this.state.inputCommand !== "" ||
+        this.state.commandQueu[0] !== undefined
+          ? this.state.direction
+          : this.state.direction2;
       let change = each === "L" ? 90 : 270;
+      console.log("what angle is each", change);
       currentDir += change;
       if (change === 270) {
         if (currentDir >= 360) {
@@ -300,46 +323,112 @@ class Grid extends Component {
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
       if (currentDir === 90) {
-        this.setState({
-          direction: currentDir,
-          dir: "N",
-          angle: 90,
-          commandQueu: split,
-          inputCommand: ""
-        });
+        if (
+          this.state.inputCommand !== "" ||
+          this.state.commandQueu[0] !== undefined
+        ) {
+          this.setState({
+            direction: currentDir,
+            dir: "N",
+            angle: 90,
+            commandQueu: split,
+            inputCommand: ""
+          });
+        } else {
+          this.setState({
+            direction2: currentDir,
+            dir2: "N",
+            angle2: 90,
+            commandQueu2: split,
+            inputCommand2: ""
+          });
+        }
       } else if (currentDir === 180) {
-        this.setState({
-          direction: currentDir,
-          dir: "W",
-          angle: 0,
-          commandQueu: split,
-          inputCommand: ""
-        });
+        if (
+          this.state.inputCommand !== "" ||
+          this.state.commandQueu[0] !== undefined
+        ) {
+          this.setState({
+            direction: currentDir,
+            dir: "W",
+            angle: 0,
+            commandQueu: split,
+            inputCommand: ""
+          });
+        } else {
+          this.setState({
+            direction2: currentDir,
+            dir2: "W",
+            angle2: 0,
+            commandQueu2: split,
+            inputCommand2: ""
+          });
+        }
       } else if (currentDir === 270) {
-        this.setState({
-          direction: currentDir,
-          dir: "S",
-          angle: 270,
-          commandQueu: split,
-          inputCommand: ""
-        });
+        if (
+          this.state.inputCommand !== "" ||
+          this.state.commandQueu[0] !== undefined
+        ) {
+          this.setState({
+            direction: currentDir,
+            dir: "S",
+            angle: 270,
+            commandQueu: split,
+            inputCommand: ""
+          });
+        } else {
+          this.setState({
+            direction2: currentDir,
+            dir2: "S",
+            angle2: 270,
+            commandQueu2: split,
+            inputCommand2: ""
+          });
+        }
       } else {
-        this.setState({
-          direction: currentDir,
-          dir: "E",
-          angle: 180,
-          commandQueu: split,
-          inputCommand: ""
-        });
+        if (
+          this.state.inputCommand !== "" ||
+          this.state.commandQueu[0] !== undefined
+        ) {
+          this.setState({
+            direction: currentDir,
+            dir: "E",
+            angle: 180,
+            commandQueu: split,
+            inputCommand: ""
+          });
+        } else {
+          this.setState({
+            direction2: currentDir,
+            dir2: "E",
+            angle2: 180,
+            commandQueu2: split,
+            inputCommand2: ""
+          });
+        }
       }
     } else {
-      this.setState({ commandQueu: split, inputCommand: "" });
-      this.handleMove();
+      if (
+        this.state.inputCommand !== "" ||
+        this.state.commandQueu[0] !== undefined
+      ) {
+        this.setState({ commandQueu: split, inputCommand: "" });
+        this.handleMove();
+      } else {
+        this.setState({ commandQueu2: split, inputCommand2: "" });
+        this.handleMove();
+      }
     }
   };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.commandQueu !== this.state.commandQueu) {
       if (this.state.commandQueu.length !== 0) {
+        this.sendCommands();
+      }
+    }
+
+    if (prevState.commandQueu2 !== this.state.commandQueu2) {
+      if (this.state.commandQueu2.length !== 0) {
         this.sendCommands();
       }
     }
