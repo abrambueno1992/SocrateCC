@@ -59,33 +59,33 @@ class Rover2 extends Component {
           state.angle = 90;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR2(yCoor, xCoor);
+          this.props.setPosR2(state);
 
-          this.setState(state);
+          this.setState({ inputCoordinates: "" });
         } else if (pDir === "W") {
           state.direction = 180;
           state.dir = "W";
           state.angle = 0;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR2(yCoor, xCoor);
-          this.setState(state);
+          this.props.setPosR2(state);
+          this.setState({ inputCoordinates: "" });
         } else if (pDir === "S") {
           state.direction = 270;
           state.dir = "S";
           state.angle = 270;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR2(yCoor, xCoor);
-          this.setState(state);
+          this.props.setPosR2(state);
+          this.setState({ inputCoordinates: "" });
         } else {
           state.direction = 0;
           state.dir = "E";
           state.angle = 180;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR2(yCoor, xCoor);
-          this.setState(state);
+          this.props.setPosR2(state);
+          this.setState({ inputCoordinates: "" });
         }
       } else {
         this.setState({ coordinates: "" });

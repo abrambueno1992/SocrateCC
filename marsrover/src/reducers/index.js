@@ -39,12 +39,19 @@ const roverStates = (state = initialState, action) => {
   switch (action.type) {
     case SET_POSITION_R2:
       return Object.assign({}, state, {
-        position2: action.payload,
-        danger: action.danger
+        position2: action.payload.position,
+        direction2: action.payload.direction,
+        dir2: action.payload.dir,
+        angle2: action.payload.angle,
+        danger2: action.danger
       });
     case SET_POSITION_R1:
       return Object.assign({}, state, {
-        position: action.payload,
+        position: action.payload.position,
+        direction: action.payload.direction,
+        dir: action.payload.dir,
+        angle: action.payload.angle,
+        // coordinates: action.payload.direction,
         danger: action.danger
       });
     case SET_GRID:
