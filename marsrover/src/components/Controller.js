@@ -19,6 +19,12 @@ class Controller extends Component {
       inputGrid: ""
     };
   }
+  handleGrid = e => {
+    e.preventDefault();
+    let value = e.target.value;
+    this.setState({ [e.target.name]: value });
+    return;
+  };
 
   render() {
     return (
