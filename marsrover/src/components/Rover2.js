@@ -61,7 +61,7 @@ class Rover2 extends Component {
           state.coordinates = "";
           this.props.setPosR2(state);
 
-          this.setState({ inputCoordinates: "" });
+          // this.setState({ inputCoordinates: "" });
         } else if (pDir === "W") {
           state.direction = 180;
           state.dir = "W";
@@ -69,7 +69,7 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR2(state);
-          this.setState({ inputCoordinates: "" });
+          // this.setState({ inputCoordinates: "" });
         } else if (pDir === "S") {
           state.direction = 270;
           state.dir = "S";
@@ -77,7 +77,7 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR2(state);
-          this.setState({ inputCoordinates: "" });
+          // this.setState({ inputCoordinates: "" });
         } else {
           state.direction = 0;
           state.dir = "E";
@@ -85,7 +85,7 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR2(state);
-          this.setState({ inputCoordinates: "" });
+          // this.setState({ inputCoordinates: "" });
         }
       } else {
         this.setState({ coordinates: "" });

@@ -20,38 +20,88 @@ class Rover1 extends Component {
       inputCommand: ""
     };
   }
-  createGrid = () => {
-    // Input is a string, so split converts the string to an array
-    // the breakpoint is the space between the numbers
-    // Split is an array of 2 elements, both elements are strings
-    let split = this.state.inputGrid.split(" ");
-    if (split.length !== 2)
-      window.alert(
-        "The grid needs to have an x integer value separated by a space and followed by a y integer value"
-      );
+  handleChange = e => {
+    e.preventDefault();
+    let value = e.target.value.toUpperCase();
+    let split = value.split("");
+    if (
+      split[split.length - 1] === "L" ||
+      split[split.length - 1] === "R" ||
+      split[split.length - 1] === "M" ||
+      split[split.length - 1] === undefined
+    ) {
+      this.setState({ [e.target.name]: value });
+    }
+    if (e.target.name === "inputCoordinates") {
+      console.log("value of coordinates", value, this.state.inputCoordinates);
+      this.setState({ [e.target.name]: value });
+    }
 
-    // Both elements of the split array are converted to decimal integers
-    // 1 is added because input is the outermost coordinates for x && y
-    // matrix starts at 0, so 5 5 would be 4 4, so +1 is needed
-    const x = parseInt(split[0], 10) + 1;
-    const y = parseInt(split[1], 10) + 1;
-
-    // Make sure x && y are greater than zero and both are integer values
-    if (0 <= x && 0 <= y) {
-      this.setState({ xGrids: x, yGrids: y });
-      // this.props.setPosR1(y, x);
-    } else {
-      this.setState({ inputGrid: "" });
+    return;
+  };
+  setCoordinates = () => {
+    let coordinates = this.state.inputCoordinates.split(" ");
+    if (coordinates.length !== 3) {
       window.alert(
-        "The input for the x and y values of the grid need to be integers"
+        "The coordinates needs an x integer separated by a space, followed by a y integer separated by another space, and finally a direction N,S,E, or W"
       );
     }
-    // this.setCoordinates(this.state.inputCoordinates);
-    // this.setCoordinates(this.state.inputCoordinates2, true);
+    const xCoor = parseInt(coordinates[1], 10);
+    const yCoor = parseInt(coordinates[0], 10);
+    const pDir = coordinates[2].toUpperCase();
+    const state = {};
+    console.log("SET coordinates FIRED", xCoor, yCoor, pDir, state);
+
+    if (0 <= xCoor && 0 <= yCoor) {
+      if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
+        // this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
+        if (pDir === "N") {
+          state.direction = 90;
+          state.dir = "N";
+          state.angle = 90;
+          state.position = [xCoor, yCoor];
+          state.coordinates = "";
+          this.props.setPosR1(state);
+
+          // this.setState({ inputCoordinates: "" });
+        } else if (pDir === "W") {
+          state.direction = 180;
+          state.dir = "W";
+          state.angle = 0;
+          state.position = [xCoor, yCoor];
+          state.coordinates = "";
+          this.props.setPosR1(state);
+          // this.setState({ inputCoordinates: "" });
+        } else if (pDir === "S") {
+          state.direction = 270;
+          state.dir = "S";
+          state.angle = 270;
+          state.position = [xCoor, yCoor];
+          state.coordinates = "";
+          this.props.setPosR1(state);
+          // this.setState({ inputCoordinates: "" });
+        } else {
+          state.direction = 0;
+          state.dir = "E";
+          state.angle = 180;
+          state.position = [xCoor, yCoor];
+          state.coordinates = "";
+          this.props.setPosR1(state);
+          // this.setState({ inputCoordinates: "" });
+        }
+      } else {
+        this.setState({ coordinates: "" });
+        window.alert("The direction needs to be N, S, E or W");
+      }
+    } else {
+      this.setState({ coordinates: "" });
+      window.alert("The coordinates need to be integers for both x and y");
+    }
+    console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
-      // this.createGrid();
+      this.setCoordinates();
     }
   };
 
