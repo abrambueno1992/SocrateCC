@@ -39,6 +39,7 @@ class Grid extends Component {
       // converted to an array to keep track
       commandQueu: [],
       commandQueu2: [],
+      rover: 1,
 
       // the grid dimensions from input
       inputGrid: ""
@@ -104,22 +105,13 @@ class Grid extends Component {
     }
   };
 
-  handleMove = () => {
+  handleMove = rover2 => {
     // direction held in state dir... default dir = "N"
-    let direction =
-      this.state.commandQueu[0] !== undefined
-        ? this.state.dir
-        : this.state.dir2;
+    let direction = rover2 !== true ? this.state.dir : this.state.dir2;
 
     // position = (y, x) ... values starting at (0,0)
-    let x =
-      this.state.commandQueu[0] !== undefined
-        ? this.state.position[1]
-        : this.state.position2[1];
-    let y =
-      this.state.commandQueu[0] !== undefined
-        ? this.state.position[0]
-        : this.state.position2[0];
+    let x = rover2 !== true ? this.state.position[1] : this.state.position2[1];
+    let y = rover2 !== true ? this.state.position[0] : this.state.position2[0];
 
     // Dimension of the grid held in state xGrids and yGrids
     // default dimension is 0 by 0
@@ -147,7 +139,7 @@ class Grid extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    if (this.state.commandQueu[0] !== undefined) {
+    if (rover2 !== true) {
       this.setState({ position: [y, x], danger: false });
     } else {
       this.setState({ position2: [y, x], danger: false });
@@ -321,10 +313,7 @@ class Grid extends Component {
 
     if (each !== "M") {
       let currentDir =
-        this.state.inputCommand !== "" ||
-        this.state.commandQueu[0] !== undefined
-          ? this.state.direction
-          : this.state.direction2;
+        this.state.rover === 1 ? this.state.direction : this.state.direction2;
       let change = each === "L" ? 90 : 270;
       console.log("what angle is each", change);
       currentDir += change;
@@ -426,10 +415,15 @@ class Grid extends Component {
         this.state.commandQueu[0] !== undefined
       ) {
         this.setState({ commandQueu: split, inputCommand: "" });
-        this.handleMove();
+        this.handleMove(false);
       } else {
-        this.setState({ commandQueu2: split, inputCommand2: "" });
-        this.handleMove();
+        this.setState({
+          commandQueu2: split,
+          inputCommand2: "",
+          commandQueu: [],
+          rover: 2
+        });
+        this.handleMove(true);
       }
     }
   };
