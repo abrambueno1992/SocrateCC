@@ -57,9 +57,7 @@ class Controller extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
+const mapStateToProps = state => {};
 
 export default connect(
   mapStateToProps,
