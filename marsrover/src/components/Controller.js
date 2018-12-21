@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // Rover 1 and Rover 2 imports
 import Rover1 from "./Rover1";
-import Rover2 from ".Rover2";
+import Rover2 from "./Rover2";
 // redux
 import { connect } from "react-redux";
 
@@ -24,6 +24,34 @@ class Controller extends Component {
     let value = e.target.value;
     this.setState({ [e.target.name]: value });
     return;
+  };
+  createGrid = () => {
+    // Input is a string, so split converts the string to an array
+    // the breakpoint is the space between the numbers
+    // Split is an array of 2 elements, both elements are strings
+    let split = this.state.inputGrid.split(" ");
+    if (split.length !== 2)
+      window.alert(
+        "The grid needs to have an x integer value separated by a space and followed by a y integer value"
+      );
+
+    // Both elements of the split array are converted to decimal integers
+    // 1 is added because input is the outermost coordinates for x && y
+    // matrix starts at 0, so 5 5 would be 4 4, so +1 is needed
+    const x = parseInt(split[0], 10) + 1;
+    const y = parseInt(split[1], 10) + 1;
+
+    // Make sure x && y are greater than zero and both are integer values
+    if (0 <= x && 0 <= y) {
+      this.setState({ xGrids: x, yGrids: y });
+    } else {
+      this.setState({ inputGrid: "" });
+      window.alert(
+        "The input for the x and y values of the grid need to be integers"
+      );
+    }
+    // this.setCoordinates(this.state.inputCoordinates);
+    // this.setCoordinates(this.state.inputCoordinates2, true);
   };
 
   render() {
@@ -50,8 +78,13 @@ class Controller extends Component {
             onChange={this.handleGrid}
           />
         </div>
+
         <Rover1 />
         <Rover2 />
+        <h3>
+          This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
+        </h3>
+        <button onClick={this.createGrid}>Create Grid</button>
       </div>
     );
   }

@@ -2,8 +2,8 @@ import { SET_POSITION_R2 } from "../actions/rover2";
 import { SET_POSITION_R1 } from "../actions/rover1";
 const initialState = {
   // Rover position
-  position1: [],
-  position2: [],
+  position: [0, 0],
+  position2: [0, 0],
 
   // Grid
   xGrids: 0,

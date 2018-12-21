@@ -19,7 +19,7 @@ class Rover2 extends Component {
     };
   }
   render() {
-    return <div />;
+    return <div>Testing Rover 2</div>;
   }
 }
 const maptStateToProps = state => {
