@@ -3,6 +3,10 @@ import React, { Component } from "react";
 // Rover 1 and Rover 2 imports
 import Rover1 from "./Rover1";
 import Rover2 from "./Rover2";
+
+// GridDisplay import
+import GridDisplay from "./GridDisplay";
+
 // redux
 import { connect } from "react-redux";
 
@@ -78,7 +82,14 @@ class Controller extends Component {
             onChange={this.handleGrid}
           />
         </div>
-
+        <GridDisplay
+          angle={this.props.angle}
+          position={this.props.position}
+          xGridNumber={this.state.xGrids}
+          yGridNumber={this.state.yGrids}
+          angle2={this.props.angle2}
+          position2={this.props.position2}
+        />
         <Rover1 />
         <Rover2 />
         <h3>
