@@ -10,7 +10,14 @@ class Controller extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      // grid dimensions
+      xGrids: 0,
+      yGrids: 0,
+
+      // the grid dimensions from input
+      inputGrid: ""
+    };
   }
 
   render() {

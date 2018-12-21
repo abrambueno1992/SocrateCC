@@ -11,10 +11,6 @@ class Rover2 extends Component {
       position: [0, 0],
       inputCoordinates: "",
 
-      // grid dimensions
-      xGrids: 0,
-      yGrids: 0,
-
       // Clockwise angle
       direction: 90,
 
@@ -33,10 +29,7 @@ class Rover2 extends Component {
 
       // the queue of commands from input
       // converted to an array to keep track
-      commandQueu: [],
-
-      // the grid dimensions from input
-      inputGrid: ""
+      commandQueu: []
     };
   }
   render() {
