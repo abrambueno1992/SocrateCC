@@ -7,29 +7,15 @@ class Rover2 extends Component {
     super(props);
 
     this.state = {
-      // rover position
-      position: [0, 0],
+      // input for the position
       inputCoordinates: "",
 
-      // Clockwise angle
-      direction: 90,
-
-      // Counter-clockwise angle
-      // needed for CSS transform
-      angle: 90,
-
-      // Direction as NSEW
-      dir: "N",
       // When the rover was going out of boundary.
       //  Will stop before going out of boundary
       danger: false,
 
       // input for the commands
-      inputCommand: "",
-
-      // the queue of commands from input
-      // converted to an array to keep track
-      commandQueu: []
+      inputCommand: ""
     };
   }
   render() {
