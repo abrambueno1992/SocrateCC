@@ -9,6 +9,7 @@ import GridDisplay from "./GridDisplay";
 
 // redux
 import { connect } from "react-redux";
+import { setGrid } from "../actions/controller";
 
 class Controller extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class Controller extends Component {
 
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
+      this.props.setGrid(x, y);
       this.setState({ xGrids: x, yGrids: y });
     } else {
       this.setState({ inputGrid: "" });
@@ -85,8 +87,8 @@ class Controller extends Component {
         <GridDisplay
           angle={this.props.angle}
           position={this.props.position}
-          xGridNumber={this.state.xGrids}
-          yGridNumber={this.state.yGrids}
+          xGridNumber={this.props.xGrids}
+          yGridNumber={this.props.yGrids}
           angle2={this.props.angle2}
           position2={this.props.position2}
         />
@@ -139,5 +141,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { setGrid }
 )(Controller);

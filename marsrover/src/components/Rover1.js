@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
 import { setPosR1 } from "../actions/rover1";
+
 class Rover1 extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +39,7 @@ class Rover1 extends Component {
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
       this.setState({ xGrids: x, yGrids: y });
+      // this.props.setPosR1(y, x);
     } else {
       this.setState({ inputGrid: "" });
       window.alert(

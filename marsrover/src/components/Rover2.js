@@ -36,7 +36,8 @@ class Rover2 extends Component {
 
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
-      this.setState({ xGrids: x, yGrids: y });
+      this.props.setPosR1(y, x);
+      // this.setState({ xGrids: x, yGrids: y });
     } else {
       this.setState({ inputGrid: "" });
       window.alert(

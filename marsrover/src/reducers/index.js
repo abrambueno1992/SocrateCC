@@ -1,5 +1,6 @@
 import { SET_POSITION_R2 } from "../actions/rover2";
 import { SET_POSITION_R1 } from "../actions/rover1";
+import { SET_GRID } from "../actions/controller";
 const initialState = {
   // Rover position
   position: [0, 0],
@@ -45,6 +46,11 @@ const roverStates = (state = initialState, action) => {
       return Object.assign({}, state, {
         position: action.payload,
         danger: action.danger
+      });
+    case SET_GRID:
+      return Object.assign({}, state, {
+        xGrids: action.x,
+        yGrids: action.y
       });
     // return Object.assign({}, state, {
 
