@@ -8,6 +8,7 @@ const initialState = {
   // Grid
   xGrids: 0,
   yGrids: 0,
+  grid: null,
 
   // Clockwise angle
   direction: 90,

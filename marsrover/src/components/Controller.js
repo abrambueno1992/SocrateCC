@@ -90,8 +90,14 @@ class Controller extends Component {
           angle2={this.props.angle2}
           position2={this.props.position2}
         />
-        <Rover1 />
-        <Rover2 />
+        <div>
+          <h3>
+            Enter the coordinates of the rover: x y direction. x and y are
+            integers, direction = N,S,E,W
+          </h3>
+          <Rover1 />
+          <Rover2 />
+        </div>
         <h3>
           This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
         </h3>
