@@ -12,3 +12,11 @@ class Rover2 extends Component {
     return <div />;
   }
 }
+const maptStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  maptStateToProps,
+  {}
+)(Rover2);
