@@ -51,7 +51,7 @@ class Rover1 extends Component {
   };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
-      this.createGrid();
+      // this.createGrid();
     }
   };
 

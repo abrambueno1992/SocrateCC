@@ -50,7 +50,8 @@ const roverStates = (state = initialState, action) => {
     case SET_GRID:
       return Object.assign({}, state, {
         xGrids: action.x,
-        yGrids: action.y
+        yGrids: action.y,
+        grid: action.grid
       });
     // return Object.assign({}, state, {
 
