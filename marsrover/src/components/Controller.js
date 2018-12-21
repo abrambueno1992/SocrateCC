@@ -32,12 +32,12 @@ class Controller extends Component {
         <div>
           <h3>Current positions of Rovers</h3>
           <span>
-            Rover 1: (x: {this.state.position[1]}, y:
-            {this.state.position[0]}) {this.state.dir}
+            Rover 1: (x: {this.props.position[1]}, y:
+            {this.props.position[0]}) {this.props.dir}
           </span>
           <span>
-            Rover 2: (x: {this.state.position2[1]}, y:
-            {this.state.position2[0]}) {this.state.dir2}
+            Rover 2: (x: {this.props.position2[1]}, y:
+            {this.props.position2[0]}) {this.props.dir2}
           </span>
         </div>
         <div>
