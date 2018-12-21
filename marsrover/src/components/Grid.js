@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./Grid.css";
 import GridDisplay from "./GridDisplay";
+// redux
+import { connect } from "react-redux";
+import { setPosR1 } from "../actions/rover1";
+import { setPosR2 } from "../actions/rover2";
 class Grid extends Component {
   constructor(props) {
     super(props);
@@ -211,12 +215,14 @@ class Grid extends Component {
             state.angle2 = 90;
             state.position2 = [xCoor, yCoor];
             state.coordinates2 = "";
+            this.props.setPosR2(yCoor, xCoor);
           } else {
             state.direction = 90;
             state.dir = "N";
             state.angle = 90;
             state.position = [xCoor, yCoor];
             state.coordinates = "";
+            this.props.setPosR1(yCoor, xCoor);
           }
 
           this.setState(state);
@@ -227,12 +233,14 @@ class Grid extends Component {
             state.angle2 = 0;
             state.position2 = [xCoor, yCoor];
             state.coordinates2 = "";
+            this.props.setPosR2(yCoor, xCoor);
           } else {
             state.direction = 180;
             state.dir = "W";
             state.angle = 0;
             state.position = [xCoor, yCoor];
             state.coordinates = "";
+            this.props.setPosR1(yCoor, xCoor);
           }
           this.setState(state);
         } else if (pDir === "S") {
@@ -242,12 +250,14 @@ class Grid extends Component {
             state.angle2 = 270;
             state.position2 = [xCoor, yCoor];
             state.coordinates2 = "";
+            this.props.setPosR2(yCoor, xCoor);
           } else {
             state.direction = 270;
             state.dir = "S";
             state.angle = 270;
             state.position = [xCoor, yCoor];
             state.coordinates = "";
+            this.props.setPosR1(yCoor, xCoor);
           }
           this.setState(state);
         } else {
@@ -257,12 +267,14 @@ class Grid extends Component {
             state.angle2 = 180;
             state.position2 = [xCoor, yCoor];
             state.coordinates2 = "";
+            this.props.setPosR2(yCoor, xCoor);
           } else {
             state.direction = 0;
             state.dir = "E";
             state.angle = 180;
             state.position = [xCoor, yCoor];
             state.coordinates = "";
+            this.props.setPosR1(yCoor, xCoor);
           }
           this.setState(state);
         }
@@ -546,5 +558,14 @@ class Grid extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    position1: state.position1,
+    position2: state.position2
+  };
+};
 
-export default Grid;
+export default connect(
+  mapStateToProps,
+  { setPosR1, setPosR2 }
+)(Grid);
