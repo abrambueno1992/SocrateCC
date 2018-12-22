@@ -203,6 +203,12 @@ class Rover1 extends Component {
     if (prevProps.execute !== this.props.execute) {
       this.sendCommands();
     }
+    if (
+      prevProps.commandQueu !== this.props.commandQueu &&
+      this.props.commandQueu.length !== 0
+    ) {
+      this.sendCommands();
+    }
   };
 
   render() {

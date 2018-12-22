@@ -40,7 +40,7 @@ const initialState = {
   // converted to an array to keep track
   commandQueu: [],
   commandQueu2: [],
-  execute: false
+  execute: 0
 };
 
 const roverStates = (state = initialState, action) => {
@@ -88,7 +88,7 @@ const roverStates = (state = initialState, action) => {
 
     case EXECUTE_COMMANDS:
       return Object.assign({}, state, {
-        execute: action.payload
+        execute: state.execute + action.payload
       });
 
     case EXECUTE_CMD_MV1:

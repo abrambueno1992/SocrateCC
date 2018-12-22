@@ -10,5 +10,5 @@ export const setGrid = (x, y) => ({
 
 export const executeCommands = () => ({
   type: EXECUTE_COMMANDS,
-  payload: true
+  payload: 1
 });
