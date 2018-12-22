@@ -3,7 +3,7 @@ import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
 import { setPosR1, executeCMDdir1, executeCMDmv1 } from "../actions/rover1";
-
+import { executeCommands } from "../actions/controller";
 class Rover1 extends Component {
   constructor(props) {
     super(props);
@@ -204,19 +204,25 @@ class Rover1 extends Component {
     });
     // this.setState({ position: [y, x], commandQueu: split });
   };
+  cancelCommands = () => {
+    this.props.executeCommands(2);
+  };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
     }
-    if (prevProps.execute !== this.props.execute && this.props.execute === 1) {
-      this.sendCommands();
+    if (prevProps.execute !== this.props.execute) {
+      if (this.props.execute === 1 && this.state.inputCommand !== "") {
+        this.sendCommands();
+      } else {
+        this.cancelCommands();
+      }
     }
-    if (
-      prevProps.commandQueu !== this.props.commandQueu &&
-      this.props.execute === 1
-    ) {
-      this.sendCommands();
+    if (prevProps.commandQueu !== this.props.commandQueu) {
+      if (this.props.execute === 1) {
+        this.sendCommands();
+      }
     }
   };
 
@@ -285,5 +291,5 @@ const maptStateToProps = state => {
 };
 export default connect(
   maptStateToProps,
-  { setPosR1, executeCMDdir1, executeCMDmv1 }
+  { setPosR1, executeCMDdir1, executeCMDmv1, executeCommands }
 )(Rover1);

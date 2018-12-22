@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
 import { setPosR2, executeCMDdir2, executeCMDmv2 } from "../actions/rover2";
+import { executeCommands } from "../actions/controller";
 class Rover2 extends Component {
   constructor(props) {
     super(props);
@@ -193,13 +194,20 @@ class Rover2 extends Component {
     this.props.executeCMDmv2({ position: [y, x], commandQueu: split });
     // this.setState({ position: [y, x], commandQueu: split });
   };
+  cancelCommands = () => {
+    this.props.executeCommands(0);
+  };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
     }
     if (prevProps.execute !== this.props.execute && this.props.execute === 2) {
-      this.sendCommands();
+      if (this.state.inputCommand !== "") {
+        this.sendCommands();
+      } else {
+        this.cancelCommands();
+      }
     }
     if (
       prevProps.commandQueu !== this.props.commandQueu &&
@@ -268,12 +276,11 @@ const maptStateToProps = state => {
     // the queue of commands from input
     // converted to an array to keep track
     commandQueu: state.commandQueu2,
-    qeued: state.commandQueu,
     execute: state.execute
   };
 };
 
 export default connect(
   maptStateToProps,
-  { setPosR2, executeCMDdir2, executeCMDmv2 }
+  { setPosR2, executeCMDdir2, executeCMDmv2, executeCommands }
 )(Rover2);
