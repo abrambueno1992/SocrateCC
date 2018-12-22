@@ -60,7 +60,7 @@ class Controller extends Component {
     // this.setCoordinates(this.state.inputCoordinates2, true);
   };
   sendCommands = () => {
-    this.props.executeCommands();
+    this.props.executeCommands(1);
   };
 
   render() {

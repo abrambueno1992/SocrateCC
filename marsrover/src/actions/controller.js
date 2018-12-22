@@ -8,7 +8,7 @@ export const setGrid = (x, y) => ({
   grid: true
 });
 
-export const executeCommands = () => ({
+export const executeCommands = one => ({
   type: EXECUTE_COMMANDS,
-  payload: 1
+  payload: one
 });

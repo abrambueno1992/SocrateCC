@@ -75,7 +75,8 @@ const roverStates = (state = initialState, action) => {
         dir: action.payload.dir,
         angle: action.payload.angle,
         commandQueu: action.payload.commandQueu,
-        danger: action.danger
+        danger: action.danger,
+        execute: state.execute + action.payload.execute
       });
     case EXECUTE_CMD_DIR2:
       return Object.assign({}, state, {
@@ -83,23 +84,26 @@ const roverStates = (state = initialState, action) => {
         dir2: action.payload.dir,
         angle2: action.payload.angle,
         commandQueu2: action.payload.commandQueu,
-        danger: action.danger
+        danger: action.danger,
+        execute: state.execute + action.payload.execute
       });
 
     case EXECUTE_COMMANDS:
       return Object.assign({}, state, {
-        execute: state.execute + action.payload
+        execute: action.payload
       });
 
     case EXECUTE_CMD_MV1:
       return Object.assign({}, state, {
         position: action.payload.position,
-        commandQueu: action.payload.commandQueu
+        commandQueu: action.payload.commandQueu,
+        execute: state.execute + action.payload.execute
       });
     case EXECUTE_CMD_MV2:
       return Object.assign({}, state, {
         position2: action.payload.position,
-        commandQueu2: action.payload.commandQueu
+        commandQueu2: action.payload.commandQueu,
+        execute: state.execute + action.payload.execute
       });
     // return Object.assign({}, state, {
 

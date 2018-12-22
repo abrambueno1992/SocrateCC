@@ -198,22 +198,14 @@ class Rover2 extends Component {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
     }
-    if (
-      prevProps.execute !== this.props.execute &&
-      this.props.qeued.length === 0
-    ) {
+    if (prevProps.execute !== this.props.execute && this.props.execute === 2) {
       this.sendCommands();
     }
     if (
       prevProps.commandQueu !== this.props.commandQueu &&
-      this.props.commandQueu.length !== 0
+      this.props.execute === 2
     ) {
       this.sendCommands();
-    }
-    if (prevProps.qeued !== this.props.qeued && this.props.qeued.length === 0) {
-      if (this.state.inputCommand !== "") {
-        this.sendCommands();
-      }
     }
   };
   render() {

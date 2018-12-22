@@ -112,7 +112,7 @@ class Rover1 extends Component {
     split.shift();
     this.setState({ inputCommand: "" });
     console.log("SPlit values", split, each);
-
+    const end = split.length === 0 ? 1 : 0;
     if (each !== "M") {
       let currentDir = this.props.direction;
       let change = each === "L" ? 90 : 270;
@@ -130,28 +130,32 @@ class Rover1 extends Component {
           direction: currentDir,
           dir: "N",
           angle: 90,
-          commandQueu: split
+          commandQueu: split,
+          execute: end
         });
       } else if (currentDir === 180) {
         this.props.executeCMDdir1({
           direction: currentDir,
           dir: "W",
           angle: 0,
-          commandQueu: split
+          commandQueu: split,
+          execute: end
         });
       } else if (currentDir === 270) {
         this.props.executeCMDdir1({
           direction: currentDir,
           dir: "S",
           angle: 270,
-          commandQueu: split
+          commandQueu: split,
+          execute: end
         });
       } else {
         this.props.executeCMDdir1({
           direction: currentDir,
           dir: "E",
           angle: 180,
-          commandQueu: split
+          commandQueu: split,
+          execute: end
         });
       }
     } else {
@@ -159,6 +163,7 @@ class Rover1 extends Component {
     }
   };
   handleMove = split => {
+    const end = split.length === 0 ? 1 : 0;
     // direction held in state dir... default dir = "N"
     let direction = this.props.dir;
 
@@ -192,7 +197,11 @@ class Rover1 extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.props.executeCMDmv1({ position: [y, x], commandQueu: split });
+    this.props.executeCMDmv1({
+      position: [y, x],
+      commandQueu: split,
+      execute: end
+    });
     // this.setState({ position: [y, x], commandQueu: split });
   };
 
@@ -200,12 +209,12 @@ class Rover1 extends Component {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
     }
-    if (prevProps.execute !== this.props.execute) {
+    if (prevProps.execute !== this.props.execute && this.props.execute === 1) {
       this.sendCommands();
     }
     if (
       prevProps.commandQueu !== this.props.commandQueu &&
-      this.props.commandQueu.length !== 0
+      this.props.execute === 1
     ) {
       this.sendCommands();
     }
