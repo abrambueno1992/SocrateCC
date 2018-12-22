@@ -9,7 +9,7 @@ import GridDisplay from "./GridDisplay";
 
 // redux
 import { connect } from "react-redux";
-import { setGrid } from "../actions/controller";
+import { setGrid, executeCommands } from "../actions/controller";
 
 class Controller extends Component {
   constructor(props) {
@@ -58,6 +58,9 @@ class Controller extends Component {
     }
     // this.setCoordinates(this.state.inputCoordinates);
     // this.setCoordinates(this.state.inputCoordinates2, true);
+  };
+  sendCommands = () => {
+    this.props.executeCommands();
   };
 
   render() {
@@ -140,5 +143,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setGrid }
+  { setGrid, executeCommands }
 )(Controller);

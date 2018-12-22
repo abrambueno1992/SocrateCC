@@ -192,12 +192,16 @@ class Rover1 extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.setState({ position: [y, x], commandQueu: split });
+    this.props.executeCMDmv1({ position: [y, x], commandQueu: split });
+    // this.setState({ position: [y, x], commandQueu: split });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
+    }
+    if (prevProps.execute !== this.props.execute) {
+      this.sendCommands();
     }
   };
 
@@ -260,7 +264,8 @@ const maptStateToProps = state => {
 
     // the queue of commands from input
     // converted to an array to keep track
-    commandQueu: state.commandQueu
+    commandQueu: state.commandQueu,
+    execute: state.execute
   };
 };
 export default connect(

@@ -8,7 +8,7 @@ import {
   EXECUTE_CMD_DIR1,
   EXECUTE_CMD_MV1
 } from "../actions/rover1";
-import { SET_GRID } from "../actions/controller";
+import { SET_GRID, EXECUTE_COMMANDS } from "../actions/controller";
 const initialState = {
   // Rover position
   position: [0, 0],
@@ -40,7 +40,7 @@ const initialState = {
   // converted to an array to keep track
   commandQueu: [],
   commandQueu2: [],
-  rover: 1
+  execute: false
 };
 
 const roverStates = (state = initialState, action) => {
@@ -84,6 +84,11 @@ const roverStates = (state = initialState, action) => {
         angle2: action.payload.angle,
         commandQueu2: action.payload.commandQueu,
         danger: action.danger
+      });
+
+    case EXECUTE_COMMANDS:
+      return Object.assign({}, state, {
+        execute: action.payload
       });
 
     case EXECUTE_CMD_MV1:
