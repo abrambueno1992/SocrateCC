@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
-import { setPosR2 } from "../actions/rover2";
+import { setPosR2, executeCMDdir2, executeCMDmv2 } from "../actions/rover2";
 class Rover2 extends Component {
   constructor(props) {
     super(props);
@@ -97,9 +97,123 @@ class Rover2 extends Component {
     }
     console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
+  sendCommands = e => {
+    let each;
+    const split = [];
+
+    let splitTemp =
+      this.state.inputCommand !== ""
+        ? this.state.inputCommand.split("")
+        : this.props.commandQueu.map(each => each);
+    splitTemp.forEach(each => split.push(each));
+    each = split[0];
+    split.shift();
+    this.setState({ inputCommand: "" });
+    console.log("SPlit values", split, each);
+
+    if (each !== "M") {
+      let currentDir = this.props.direction;
+      let change = each === "L" ? 90 : 270;
+      console.log("what angle is each", change);
+      currentDir += change;
+      if (change === 270) {
+        if (currentDir >= 360) {
+          currentDir -= 360;
+        } else {
+        }
+      }
+      currentDir = currentDir === 360 ? 0 : currentDir;
+      if (currentDir === 90) {
+        this.props.executeCMDdir2({
+          direction: currentDir,
+          dir: "N",
+          angle: 90,
+          commandQueu: split
+        });
+      } else if (currentDir === 180) {
+        this.props.executeCMDdir2({
+          direction: currentDir,
+          dir: "W",
+          angle: 0,
+          commandQueu: split
+        });
+      } else if (currentDir === 270) {
+        this.props.executeCMDdir2({
+          direction: currentDir,
+          dir: "S",
+          angle: 270,
+          commandQueu: split
+        });
+      } else {
+        this.props.executeCMDdir2({
+          direction: currentDir,
+          dir: "E",
+          angle: 180,
+          commandQueu: split
+        });
+      }
+    } else {
+      this.handleMove(split);
+    }
+  };
+  handleMove = split => {
+    // direction held in state dir... default dir = "N"
+    let direction = this.props.dir;
+
+    // position = (y, x) ... values starting at (0,0)
+    let x = this.props.position[1];
+    let y = this.props.position[0];
+
+    // Dimension of the grid held in state xGrids and yGrids
+    // default dimension is 0 by 0
+    const { xGrids, yGrids } = this.props;
+    if (direction === "N") {
+      y += 1;
+    } else if (direction === "S") {
+      y -= 1;
+    } else if (direction === "E") {
+      x += 1;
+    } else {
+      x -= 1;
+    }
+
+    // Make sure x and y are not out of boundary, below 0 0
+    if (x < 0 || y < 0) {
+      this.setState({ danger: true });
+      return;
+    }
+
+    // Make sure x && y are not out of boundary, xGrids && yGrids are maximum
+    if (x >= xGrids || y >= yGrids) {
+      this.setState({ danger: true });
+      return;
+    }
+
+    // position = (y, x) ... values starting at (0,0)
+    this.props.executeCMDmv2({ position: [y, x], commandQueu: split });
+    // this.setState({ position: [y, x], commandQueu: split });
+  };
+
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
+    }
+    if (
+      prevProps.execute !== this.props.execute &&
+      this.props.qeued.length === 0
+    ) {
+      this.sendCommands();
+    }
+    if (
+      prevProps.commandQueu !== this.props.commandQueu &&
+      this.props.commandQueu.length !== 0
+    ) {
+      this.sendCommands();
+    }
+    if (prevProps.qeued !== this.props.qeued && this.props.qeued.length === 0) {
+      if (this.state.inputCommand !== "") {
+        this.sendCommands();
+      }
     }
   };
   render() {
@@ -161,11 +275,13 @@ const maptStateToProps = state => {
 
     // the queue of commands from input
     // converted to an array to keep track
-    commandQueu: state.commandQueu2
+    commandQueu: state.commandQueu2,
+    qeued: state.commandQueu,
+    execute: state.execute
   };
 };
 
 export default connect(
   maptStateToProps,
-  { setPosR2 }
+  { setPosR2, executeCMDdir2, executeCMDmv2 }
 )(Rover2);
