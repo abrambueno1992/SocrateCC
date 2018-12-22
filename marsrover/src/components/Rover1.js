@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // redux
 import { connect } from "react-redux";
-import { setPosR1 } from "../actions/rover1";
+import { setPosR1, executeCMDdir1 } from "../actions/rover1";
 
 class Rover1 extends Component {
   constructor(props) {
@@ -126,34 +126,28 @@ class Rover1 extends Component {
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
       if (currentDir === 90) {
-        this.setState({
-          direction: currentDir,
-          dir: "N",
-          angle: 90,
-          commandQueu: split
-        });
-        this.props.setPosR1({
+        this.props.executeCMDdir1({
           direction: currentDir,
           dir: "N",
           angle: 90,
           commandQueu: split
         });
       } else if (currentDir === 180) {
-        this.setState({
+        this.props.executeCMDdir1({
           direction: currentDir,
           dir: "W",
           angle: 0,
           commandQueu: split
         });
       } else if (currentDir === 270) {
-        this.setState({
+        this.props.executeCMDdir1({
           direction: currentDir,
           dir: "S",
           angle: 270,
           commandQueu: split
         });
       } else {
-        this.setState({
+        this.props.executeCMDdir1({
           direction: currentDir,
           dir: "E",
           angle: 180,
@@ -161,11 +155,10 @@ class Rover1 extends Component {
         });
       }
     } else {
-      this.setState({ commandQueu: split, inputCommand: "" });
-      this.handleMove();
+      this.handleMove(split);
     }
   };
-  handleMove = () => {
+  handleMove = split => {
     // direction held in state dir... default dir = "N"
     let direction = this.props.dir;
 
@@ -199,7 +192,7 @@ class Rover1 extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.setState({ position: [y, x], danger: false });
+    this.setState({ position: [y, x], commandQueu: split, danger: false });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -272,5 +265,5 @@ const maptStateToProps = state => {
 };
 export default connect(
   maptStateToProps,
-  { setPosR1 }
+  { setPosR1, executeCMDdir1 }
 )(Rover1);
