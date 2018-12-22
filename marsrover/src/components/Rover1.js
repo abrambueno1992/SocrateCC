@@ -99,6 +99,69 @@ class Rover1 extends Component {
     }
     console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
+  sendCommands = e => {
+    let each;
+    const split = [];
+
+    let splitTemp =
+      this.state.inputCommand !== ""
+        ? this.state.inputCommand.split("")
+        : this.props.commandQueu.map(each => each);
+    splitTemp.forEach(each => split.push(each));
+    each = split[0];
+    split.shift();
+    console.log("SPlit values", split, each);
+
+    if (each !== "M") {
+      let currentDir = this.props.direction;
+      let change = each === "L" ? 90 : 270;
+      console.log("what angle is each", change);
+      currentDir += change;
+      if (change === 270) {
+        if (currentDir >= 360) {
+          currentDir -= 360;
+        } else {
+        }
+      }
+      currentDir = currentDir === 360 ? 0 : currentDir;
+      if (currentDir === 90) {
+        this.setState({
+          direction: currentDir,
+          dir: "N",
+          angle: 90,
+          commandQueu: split,
+          inputCommand: ""
+        });
+      } else if (currentDir === 180) {
+        this.setState({
+          direction: currentDir,
+          dir: "W",
+          angle: 0,
+          commandQueu: split,
+          inputCommand: ""
+        });
+      } else if (currentDir === 270) {
+        this.setState({
+          direction: currentDir,
+          dir: "S",
+          angle: 270,
+          commandQueu: split,
+          inputCommand: ""
+        });
+      } else {
+        this.setState({
+          direction: currentDir,
+          dir: "E",
+          angle: 180,
+          commandQueu: split,
+          inputCommand: ""
+        });
+      }
+    } else {
+      this.setState({ commandQueu: split, inputCommand: "" });
+      this.handleMove(false);
+    }
+  };
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
@@ -109,12 +172,29 @@ class Rover1 extends Component {
     return (
       <div>
         <div>
-          <span>Rover 1: </span>
+          <h3>Rover 1: </h3>
+          <h5>
+            Enter the coordinates of the rover: x y direction. x and y are
+            integers, direction = N,S,E,W
+          </h5>
           <input
             type="text"
             name="inputCoordinates"
             placeHolder="3 5 N"
             value={this.state.inputCoordinates}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div>
+          <h6>
+            Enter instructions for rover, sequential non-space separated (L =
+            left, R = right, M = move): LRM
+          </h6>
+          <input
+            type="text"
+            name="inputCommand"
+            placeHolder="LMLMLMLMM"
+            value={this.state.inputCommand}
             onChange={this.handleChange}
           />
         </div>

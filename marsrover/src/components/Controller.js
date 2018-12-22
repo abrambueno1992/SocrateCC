@@ -63,6 +63,14 @@ class Controller extends Component {
   render() {
     return (
       <div>
+        <GridDisplay
+          angle={this.props.angle}
+          position={this.props.position}
+          xGridNumber={this.props.xGrids}
+          yGridNumber={this.props.yGrids}
+          angle2={this.props.angle2}
+          position2={this.props.position2}
+        />
         <div>
           <h3>Current positions of Rovers</h3>
           <span>
@@ -75,7 +83,8 @@ class Controller extends Component {
           </span>
         </div>
         <div>
-          <h3>Enter the max x and y coordinates, space separated: x y</h3>
+          <h5>Enter the max x and y coordinates, space separated: x y</h5>
+
           <input
             type="text"
             name="inputGrid"
@@ -84,26 +93,16 @@ class Controller extends Component {
             onChange={this.handleGrid}
           />
         </div>
-        <GridDisplay
-          angle={this.props.angle}
-          position={this.props.position}
-          xGridNumber={this.props.xGrids}
-          yGridNumber={this.props.yGrids}
-          angle2={this.props.angle2}
-          position2={this.props.position2}
-        />
-        <div>
-          <h3>
-            Enter the coordinates of the rover: x y direction. x and y are
-            integers, direction = N,S,E,W
-          </h3>
-          <Rover1 />
-          <Rover2 />
-        </div>
+
         <h3>
           This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
         </h3>
-        <button onClick={this.createGrid}>Create Grid</button>
+        <div>
+          <Rover1 />
+          <Rover2 />
+          <button onClick={this.createGrid}>Create Grid</button>
+        </div>
+        <button onClick={this.sendCommands}>Send Commands</button>
       </div>
     );
   }

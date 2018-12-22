@@ -106,12 +106,29 @@ class Rover2 extends Component {
     return (
       <div>
         <div>
-          <span>Rover 2: </span>
+          <h3>Rover 2: </h3>
+          <h5>
+            Enter the coordinates of the rover: x y direction. x and y are
+            integers, direction = N,S,E,W
+          </h5>
           <input
             type="text"
             name="inputCoordinates"
             placeHolder="3 5 N"
             value={this.state.inputCoordinates}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div>
+          <h6>
+            Enter instructions for rover, sequential non-space separated (L =
+            left, R = right, M = move): LRM
+          </h6>
+          <input
+            type="text"
+            name="inputCommand"
+            placeHolder="LMLMLMLMM"
+            value={this.state.inputCommand}
             onChange={this.handleChange}
           />
         </div>
