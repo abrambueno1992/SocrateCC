@@ -8,3 +8,10 @@ export const setPosR2 = dataObject => ({
   // });
   // };
 });
+
+export const EXECUTE_CMD_DIR2 = "EXECUTE_CMD_DIR2";
+export const executeCMDdir2 = dataObject => ({
+  type: EXECUTE_CMD_DIR2,
+  payload: dataObject,
+  danger: false
+});

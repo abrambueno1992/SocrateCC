@@ -9,3 +9,10 @@ export const setPosR1 = dataObject => ({
   // });
   // };
 });
+
+export const EXECUTE_CMD_DIR1 = "EXECUTE_CMD_DIR1";
+export const executeCMDdir1 = dataObject => ({
+  type: EXECUTE_CMD_DIR1,
+  payload: dataObject,
+  danger: false
+});

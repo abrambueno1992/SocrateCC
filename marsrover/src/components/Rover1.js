@@ -110,6 +110,7 @@ class Rover1 extends Component {
     splitTemp.forEach(each => split.push(each));
     each = split[0];
     split.shift();
+    this.setState({ inputCommand: "" });
     console.log("SPlit values", split, each);
 
     if (each !== "M") {
@@ -129,39 +130,78 @@ class Rover1 extends Component {
           direction: currentDir,
           dir: "N",
           angle: 90,
-          commandQueu: split,
-          inputCommand: ""
+          commandQueu: split
+        });
+        this.props.setPosR1({
+          direction: currentDir,
+          dir: "N",
+          angle: 90,
+          commandQueu: split
         });
       } else if (currentDir === 180) {
         this.setState({
           direction: currentDir,
           dir: "W",
           angle: 0,
-          commandQueu: split,
-          inputCommand: ""
+          commandQueu: split
         });
       } else if (currentDir === 270) {
         this.setState({
           direction: currentDir,
           dir: "S",
           angle: 270,
-          commandQueu: split,
-          inputCommand: ""
+          commandQueu: split
         });
       } else {
         this.setState({
           direction: currentDir,
           dir: "E",
           angle: 180,
-          commandQueu: split,
-          inputCommand: ""
+          commandQueu: split
         });
       }
     } else {
       this.setState({ commandQueu: split, inputCommand: "" });
-      this.handleMove(false);
+      this.handleMove();
     }
   };
+  handleMove = () => {
+    // direction held in state dir... default dir = "N"
+    let direction = this.props.dir;
+
+    // position = (y, x) ... values starting at (0,0)
+    let x = this.props.position[1];
+    let y = this.props.position[0];
+
+    // Dimension of the grid held in state xGrids and yGrids
+    // default dimension is 0 by 0
+    const { xGrids, yGrids } = this.props;
+    if (direction === "N") {
+      y += 1;
+    } else if (direction === "S") {
+      y -= 1;
+    } else if (direction === "E") {
+      x += 1;
+    } else {
+      x -= 1;
+    }
+
+    // Make sure x and y are not out of boundary, below 0 0
+    if (x < 0 || y < 0) {
+      this.setState({ danger: true });
+      return;
+    }
+
+    // Make sure x && y are not out of boundary, xGrids && yGrids are maximum
+    if (x >= xGrids || y >= yGrids) {
+      this.setState({ danger: true });
+      return;
+    }
+
+    // position = (y, x) ... values starting at (0,0)
+    this.setState({ position: [y, x], danger: false });
+  };
+
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
