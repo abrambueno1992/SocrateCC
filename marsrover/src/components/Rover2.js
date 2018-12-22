@@ -196,17 +196,19 @@ class Rover2 extends Component {
   };
   cancelCommands = () => {
     this.props.executeCommands(0);
+    console.log("END of the commands", "FIN");
   };
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.grid !== this.props.grid) {
       this.setCoordinates();
     }
-    if (prevProps.execute !== this.props.execute && this.props.execute === 2) {
-      if (this.state.inputCommand !== "") {
+    if (prevProps.execute !== this.props.execute) {
+      if (this.props.execute === 2 && this.state.inputCommand !== "") {
         this.sendCommands();
-      } else {
+      } else if (this.props.execute === 2) {
         this.cancelCommands();
+      } else {
       }
     }
     if (

@@ -215,8 +215,9 @@ class Rover1 extends Component {
     if (prevProps.execute !== this.props.execute) {
       if (this.props.execute === 1 && this.state.inputCommand !== "") {
         this.sendCommands();
-      } else {
+      } else if (this.props.execute === 1) {
         this.cancelCommands();
+      } else {
       }
     }
     if (prevProps.commandQueu !== this.props.commandQueu) {
