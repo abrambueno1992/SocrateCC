@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // redux
 import { connect } from "react-redux";
-import { setPosR1, executeCMDdir1 } from "../actions/rover1";
+import { setPosR1, executeCMDdir1, executeCMDmv1 } from "../actions/rover1";
 
 class Rover1 extends Component {
   constructor(props) {
@@ -192,7 +192,7 @@ class Rover1 extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.setState({ position: [y, x], commandQueu: split, danger: false });
+    this.setState({ position: [y, x], commandQueu: split });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -265,5 +265,5 @@ const maptStateToProps = state => {
 };
 export default connect(
   maptStateToProps,
-  { setPosR1, executeCMDdir1 }
+  { setPosR1, executeCMDdir1, executeCMDmv1 }
 )(Rover1);

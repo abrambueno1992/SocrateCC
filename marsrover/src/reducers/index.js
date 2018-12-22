@@ -1,5 +1,13 @@
-import { SET_POSITION_R2, EXECUTE_CMD_DIR2 } from "../actions/rover2";
-import { SET_POSITION_R1, EXECUTE_CMD_DIR1 } from "../actions/rover1";
+import {
+  SET_POSITION_R2,
+  EXECUTE_CMD_DIR2,
+  EXECUTE_CMD_MV2
+} from "../actions/rover2";
+import {
+  SET_POSITION_R1,
+  EXECUTE_CMD_DIR1,
+  EXECUTE_CMD_MV1
+} from "../actions/rover1";
 import { SET_GRID } from "../actions/controller";
 const initialState = {
   // Rover position
@@ -76,6 +84,17 @@ const roverStates = (state = initialState, action) => {
         angle2: action.payload.angle,
         commandQueu2: action.payload.commandQueu,
         danger: action.danger
+      });
+
+    case EXECUTE_CMD_MV1:
+      return Object.assign({}, state, {
+        position: action.payload.position,
+        commandQueu: action.payload.commandQueu
+      });
+    case EXECUTE_CMD_MV2:
+      return Object.assign({}, state, {
+        position2: action.payload.position,
+        commandQueu2: action.payload.commandQueu
       });
     // return Object.assign({}, state, {
 

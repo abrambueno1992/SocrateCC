@@ -15,3 +15,9 @@ export const executeCMDdir2 = dataObject => ({
   payload: dataObject,
   danger: false
 });
+
+export const EXECUTE_CMD_MV2 = "EXECUTE_CMD_MV2";
+export const executeCMDmv2 = dataObject => ({
+  type: EXECUTE_CMD_MV2,
+  payload: dataObject
+});
