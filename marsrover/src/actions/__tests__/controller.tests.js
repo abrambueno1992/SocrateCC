@@ -18,3 +18,15 @@ describe("setGrid", () => {
     expect(action.grid).toEqual(true);
   });
 });
+
+describe("executeCommands", () => {
+  it("has the correct type", () => {
+    const action = executeCommands();
+    expect(action.type).toEqual(EXECUTE_COMMANDS);
+  });
+
+  it("has the correct payload", () => {
+    const action = executeCommands(1);
+    expect(action.payload).toEqual(1);
+  });
+});
