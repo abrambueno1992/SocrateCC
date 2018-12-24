@@ -59,9 +59,9 @@ describe('executeCMDmv1', () => {
         const action = executeCMDdir1({
             position: [3, 3],
             commandQueu: ["M", "M", "R"],
-            execute: end
+            execute: 1
         });
-        expect(action.payload.position).toEqual(0);
+        expect(action.payload.position).toEqual([3, 3]);
         expect(action.payload.commandQueu).toEqual(["M", "M", "R"]);
         expect(action.payload.execute).toEqual(1);
     })
