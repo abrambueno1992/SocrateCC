@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import reducers from "./reducers";
+import roverStates from "./reducers";
 
 // const store = createStore(
 //   reducers,
@@ -12,7 +12,7 @@ import reducers from "./reducers";
 // );
 // import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(reducers, composeWithDevTools());
+const store = createStore(roverStates, composeWithDevTools());
 export default ({ children }) => {
   return <Provider store={createStore(store)}>{children}</Provider>;
 };
