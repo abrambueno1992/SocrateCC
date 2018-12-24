@@ -1,13 +1,11 @@
 import {
+  SET_POSITION_R1,
+  EXECUTE_CMD_DIR1,
+  EXECUTE_CMD_MV1,
   SET_POSITION_R2,
   EXECUTE_CMD_DIR2,
   EXECUTE_CMD_MV2
-} from "../actions/rover2";
-import {
-  SET_POSITION_R1,
-  EXECUTE_CMD_DIR1,
-  EXECUTE_CMD_MV1
-} from "../actions/rover1";
+} from "../actions/rover";
 import { SET_GRID, EXECUTE_COMMANDS } from "../actions/controller";
 const initialState = {
   // Rover position
