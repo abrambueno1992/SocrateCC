@@ -3,6 +3,7 @@ import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
 import { setPosR1, executeCMDdir1, executeCMDmv1 } from "../actions/rover1";
+import { setPosR, executeCMDdir, executeCMDmv } from "../actions/rover";
 import { executeCommands } from "../actions/controller";
 class Rover1 extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class Rover1 extends Component {
           state.angle = 90;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR1(state);
+          this.props.setPosR(state, 1);
 
           // this.setState({ inputCoordinates: "" });
         } else if (pDir === "W") {
@@ -70,7 +71,7 @@ class Rover1 extends Component {
           state.angle = 0;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR1(state);
+          this.props.setPosR(state, 1);
           // this.setState({ inputCoordinates: "" });
         } else if (pDir === "S") {
           state.direction = 270;
@@ -78,7 +79,7 @@ class Rover1 extends Component {
           state.angle = 270;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR1(state);
+          this.props.setPosR(state, 1);
           // this.setState({ inputCoordinates: "" });
         } else {
           state.direction = 0;
@@ -86,7 +87,7 @@ class Rover1 extends Component {
           state.angle = 180;
           state.position = [xCoor, yCoor];
           state.coordinates = "";
-          this.props.setPosR1(state);
+          this.props.setPosR(state, 1);
           // this.setState({ inputCoordinates: "" });
         }
       } else {
@@ -126,37 +127,49 @@ class Rover1 extends Component {
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
       if (currentDir === 90) {
-        this.props.executeCMDdir1({
-          direction: currentDir,
-          dir: "N",
-          angle: 90,
-          commandQueu: split,
-          execute: end
-        });
+        this.props.executeCMDdir(
+          {
+            direction: currentDir,
+            dir: "N",
+            angle: 90,
+            commandQueu: split,
+            execute: end
+          },
+          1
+        );
       } else if (currentDir === 180) {
-        this.props.executeCMDdir1({
-          direction: currentDir,
-          dir: "W",
-          angle: 0,
-          commandQueu: split,
-          execute: end
-        });
+        this.props.executeCMDdir(
+          {
+            direction: currentDir,
+            dir: "W",
+            angle: 0,
+            commandQueu: split,
+            execute: end
+          },
+          1
+        );
       } else if (currentDir === 270) {
-        this.props.executeCMDdir1({
-          direction: currentDir,
-          dir: "S",
-          angle: 270,
-          commandQueu: split,
-          execute: end
-        });
+        this.props.executeCMDdir(
+          {
+            direction: currentDir,
+            dir: "S",
+            angle: 270,
+            commandQueu: split,
+            execute: end
+          },
+          1
+        );
       } else {
-        this.props.executeCMDdir1({
-          direction: currentDir,
-          dir: "E",
-          angle: 180,
-          commandQueu: split,
-          execute: end
-        });
+        this.props.executeCMDdir(
+          {
+            direction: currentDir,
+            dir: "E",
+            angle: 180,
+            commandQueu: split,
+            execute: end
+          },
+          1
+        );
       }
     } else {
       this.handleMove(split);
@@ -197,11 +210,14 @@ class Rover1 extends Component {
     }
 
     // position = (y, x) ... values starting at (0,0)
-    this.props.executeCMDmv1({
-      position: [y, x],
-      commandQueu: split,
-      execute: end
-    });
+    this.props.executeCMDmv(
+      {
+        position: [y, x],
+        commandQueu: split,
+        execute: end
+      },
+      1
+    );
     // this.setState({ position: [y, x], commandQueu: split });
   };
   cancelCommands = () => {
@@ -292,5 +308,5 @@ const maptStateToProps = state => {
 };
 export default connect(
   maptStateToProps,
-  { setPosR1, executeCMDdir1, executeCMDmv1, executeCommands }
+  { setPosR, executeCMDdir, executeCMDmv, executeCommands }
 )(Rover1);
