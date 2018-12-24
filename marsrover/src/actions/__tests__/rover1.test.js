@@ -49,3 +49,22 @@ describe("executeCMDdir1", () => {
         expect(action.payload.execute).toEqual(1);
     });
 });
+describe('executeCMDmv1', () => {
+    it('has the correct type', () => {
+        const action = executeCMDmv1();
+        expect(action.type).toEqual(EXECUTE_CMD_MV1);
+    })
+
+    it('has the correct payload', () => {
+        const action = executeCMDdir1({
+            position: [3, 3],
+            commandQueu: ["M", "M", "R"],
+            execute: end
+        });
+        expect(action.payload.position).toEqual(0);
+        expect(action.payload.commandQueu).toEqual(["M", "M", "R"]);
+        expect(action.payload.execute).toEqual(1);
+    })
+
+
+})
