@@ -14,5 +14,5 @@ import reducers from "./reducers";
 
 const store = createStore(reducers, composeWithDevTools());
 export default ({ children }) => {
-  return <Provider store={createStore(store)}>{children}</Provider>;
+  return <Provider store={createStore(reducers, composeWithDevTools())}>{children}</Provider>;
 };
