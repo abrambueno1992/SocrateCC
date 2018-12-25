@@ -5,8 +5,8 @@ import Root from "../../Root";
 // Components
 import Controller from "../Controller";
 import GridDisplay from "../GridDisplay";
-import Rover1 "../Rover1";
-import Rover2 "../Rover2";
+import Rover1 from "../Rover1";
+import Rover2 from "../Rover2";
 
 let wrapped;
 beforeEach(() => {
@@ -25,7 +25,8 @@ it('should have a GridDisplay component', () => {
     expect(wrapped.find(GridDisplay).length).toEqual(1);
 })
 
-it('should ', () => {
-  
+it('should have Rover 1 and Rover 2 ', () => {
+    expect(wrapped.find(Rover1).length).toEqual(1);
+    expect(wrapped.find(Rover2).length).toEqual(1);
 })
 
