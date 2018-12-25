@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 // redux
 import { connect } from "react-redux";
-import { setPosR2, executeCMDdir2, executeCMDmv2 } from "../actions/rover2";
 import { setPosR, executeCMDdir, executeCMDmv } from "../actions/rover";
 import { executeCommands } from "../actions/controller";
 class Rover2 extends Component {
