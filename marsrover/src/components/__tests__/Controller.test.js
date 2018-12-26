@@ -10,23 +10,34 @@ import Rover2 from "../Rover2";
 
 let wrapped;
 beforeEach(() => {
-    wrapped = mount(
-        <Root>
-            <Controller />
-        </Root>
-    )
+  wrapped = mount(
+    <Root>
+      <Controller />
+    </Root>
+  );
 });
 
 afterEach(() => {
-    wrapped.unmount();
-})
+  wrapped.unmount();
+});
 
-it('should have a GridDisplay component', () => {
-    expect(wrapped.find(GridDisplay).length).toEqual(1);
-})
+it("should have a GridDisplay component", () => {
+  expect(wrapped.find(GridDisplay).length).toEqual(1);
+});
 
-it('should have Rover 1 and Rover 2 ', () => {
-    expect(wrapped.find(Rover1).length).toEqual(1);
-    expect(wrapped.find(Rover2).length).toEqual(1);
-})
+it("should have Rover 1 and Rover 2 ", () => {
+  expect(wrapped.find(Rover1).length).toEqual(1);
+  expect(wrapped.find(Rover2).length).toEqual(1);
+});
 
+describe("the text input", () => {
+  beforeEach(() => {
+    wrapped.find("input.inputGrid").simulate("change", {
+      target: { value: "6 7" }
+    });
+    wrapped.update();
+  });
+  it("should have an input that users can type in", () => {
+    expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
+  });
+});

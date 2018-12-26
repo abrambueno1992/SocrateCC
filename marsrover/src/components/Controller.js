@@ -92,6 +92,7 @@ class Controller extends Component {
             type="text"
             name="inputGrid"
             placeHolder="x y"
+            className="inputGrid"
             value={this.state.inputGrid}
             onChange={this.handleGrid}
           />
