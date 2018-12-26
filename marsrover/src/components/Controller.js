@@ -48,8 +48,8 @@ class Controller extends Component {
 
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
-      this.props.setGrid(x, y);
       this.setState({ xGrids: x, yGrids: y });
+      this.props.setGrid(x, y);
     } else {
       this.setState({ inputGrid: "" });
       window.alert(
@@ -104,9 +104,13 @@ class Controller extends Component {
         <div>
           <Rover1 />
           <Rover2 />
-          <button onClick={this.createGrid}>Create Grid</button>
+          <button className="inputGrid" onClick={this.createGrid}>
+            Create Grid
+          </button>
         </div>
-        <button onClick={this.sendCommands}>Send Commands</button>
+        <button className="sendCommands" onClick={this.sendCommands}>
+          Send Commands
+        </button>
       </div>
     );
   }

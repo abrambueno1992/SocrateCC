@@ -40,4 +40,12 @@ describe("the text input", () => {
   it("should have an input that users can type in", () => {
     expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
   });
+
+  it("when submitting grid input, the xGrids and yGrids state gets updated ", () => {
+    wrapped.find("button.inputGrid").simulate("submit");
+    wrapped.update();
+    console.log("Props are", wrapped.find("state"));
+
+    // expect(wrapped.find("").prop("xGrids")).toEqual("6");
+  });
 });
