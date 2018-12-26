@@ -21,7 +21,7 @@ describe("setPosR1", () => {
     expect(action2.type).toEqual(SET_POSITION_R2);
   });
 
-  it("has the correct payload", () => {
+  it("has the correct type and payload", () => {
     const state = {};
     state.direction = 90;
     state.dir = "N";
@@ -99,14 +99,17 @@ describe("executeCMDdir", () => {
 
 describe("executeCMDmv", () => {
   it("has the correct type", () => {
+    // rover 1 flag === 1
     const action = executeCMDmv({}, 1);
     expect(action.type).toEqual(EXECUTE_CMD_MV1);
 
+    // rover 2 flag === 2
     const action2 = executeCMDmv({}, 2);
     expect(action2.type).toEqual(EXECUTE_CMD_MV2);
   });
 
   it("has the correct payload", () => {
+    // rover 1 flag === 1
     const action = executeCMDmv(
       {
         position: [3, 3],
@@ -120,6 +123,7 @@ describe("executeCMDmv", () => {
     expect(action.payload.commandQueu).toEqual(["M", "M", "R"]);
     expect(action.payload.execute).toEqual(1);
 
+    // rover 2 flag === 2
     const action2 = executeCMDmv(
       {
         position: [3, 3],
