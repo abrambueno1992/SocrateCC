@@ -31,7 +31,7 @@ const gridDisplay = props => {
   const yPos2 = props.position2[1];
 
   return (
-    <div>
+    <div className="what">
       {yGrids
         .slice(0)
         .reverse()
@@ -41,14 +41,24 @@ const gridDisplay = props => {
               {xGrids.map((column, x, total) => {
                 if (row === xPos && yPos === column)
                   return (
-                    <Rover style={{ height: "3em" }} angle={props.angle} />
+                    <Rover
+                      className="Rover"
+                      style={{ height: "3em" }}
+                      angle={props.angle}
+                      key={column + x}
+                    />
                   );
                 if (row === xPos2 && column === yPos2) {
                   return (
-                    <Rover style={{ height: "3em" }} angle={props.angle2} />
+                    <Rover
+                      className="Rover"
+                      style={{ height: "3em" }}
+                      angle={props.angle2}
+                      key={column + x}
+                    />
                   );
                 }
-                return <div className="row" />;
+                return <div key={column + x} className="row" />;
               })}
             </div>
           );
