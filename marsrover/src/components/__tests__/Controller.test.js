@@ -38,14 +38,14 @@ describe("the text input", () => {
     wrapped.update();
   });
   it("should have an input that users can type in", () => {
-    expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
+    expect(wrapped.find(".inputGrid").prop("value")).toEqual("6 7");
+  });
+  beforeEach(() => {
+    wrapped.find("button.inputGridBtn").simulate("submit");
+    wrapped.update();
   });
 
-  it("when submitting grid input, the xGrids and yGrids state gets updated ", () => {
-    wrapped.find("button.inputGrid").simulate("submit");
-    wrapped.update();
-    console.log("Props are", wrapped.find("state"));
-
-    // expect(wrapped.find("").prop("xGrids")).toEqual("6");
+  it("should not clear inputGrid value", () => {
+    expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
   });
 });

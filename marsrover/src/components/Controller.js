@@ -35,10 +35,12 @@ class Controller extends Component {
     // the breakpoint is the space between the numbers
     // Split is an array of 2 elements, both elements are strings
     let split = this.state.inputGrid.split(" ");
-    if (split.length !== 2)
+    if (split.length !== 2) {
       window.alert(
         "The grid needs to have an x integer value separated by a space and followed by a y integer value"
       );
+      return;
+    }
 
     // Both elements of the split array are converted to decimal integers
     // 1 is added because input is the outermost coordinates for x && y
@@ -73,6 +75,7 @@ class Controller extends Component {
           yGridNumber={this.props.yGrids}
           angle2={this.props.angle2}
           position2={this.props.position2}
+          className="GridDisplay"
         />
         <div>
           <h3>Current positions of Rovers</h3>
@@ -104,7 +107,7 @@ class Controller extends Component {
         <div>
           <Rover1 />
           <Rover2 />
-          <button className="inputGrid" onClick={this.createGrid}>
+          <button className="inputGridBtn" onClick={this.createGrid}>
             Create Grid
           </button>
         </div>
