@@ -40,12 +40,10 @@ describe("the text input", () => {
   it("should have an input that users can type in", () => {
     expect(wrapped.find(".inputGrid").prop("value")).toEqual("6 7");
   });
-  beforeEach(() => {
-    wrapped.find("button.inputGridBtn").simulate("submit");
-    wrapped.update();
-  });
 
   it("should not clear inputGrid value", () => {
+    wrapped.find("button.inputGridBtn").simulate("submit");
+    wrapped.update();
     expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
   });
 });
