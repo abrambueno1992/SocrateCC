@@ -30,11 +30,11 @@ class Rover1 extends Component {
       split[split.length - 1] === "M" ||
       split[split.length - 1] === undefined
     ) {
-      this.setState({ inputCommand: value });
+      this.setState({ [e.target.name]: value });
     }
     if (e.target.name === "inputCoordinates") {
       console.log("value of coordinates", value, this.state.inputCoordinates);
-      this.setState({ inputCoordinates: value });
+      this.setState({ [e.target.name]: value });
     }
 
     return;
