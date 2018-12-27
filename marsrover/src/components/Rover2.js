@@ -32,7 +32,6 @@ class Rover2 extends Component {
       this.setState({ [e.target.name]: value });
     }
     if (e.target.name === "inputCoordinates") {
-      console.log("value of coordinates", value, this.state.inputCoordinates);
       this.setState({ [e.target.name]: value });
     }
 
@@ -49,11 +48,9 @@ class Rover2 extends Component {
     const yCoor = parseInt(coordinates[0], 10);
     const pDir = coordinates[2].toUpperCase();
     const state = {};
-    console.log("SET coordinates FIRED", xCoor, yCoor, pDir, state);
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
-        // this.setState({ dir: pDir, position: [xCoor, yCoor], coordinates: "" });
         if (pDir === "N") {
           state.direction = 90;
           state.dir = "N";
@@ -61,8 +58,6 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR(state, 2);
-
-          // this.setState({ inputCoordinates: "" });
         } else if (pDir === "W") {
           state.direction = 180;
           state.dir = "W";
@@ -70,7 +65,6 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR(state, 2);
-          // this.setState({ inputCoordinates: "" });
         } else if (pDir === "S") {
           state.direction = 270;
           state.dir = "S";
@@ -78,7 +72,6 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR(state, 2);
-          // this.setState({ inputCoordinates: "" });
         } else {
           state.direction = 0;
           state.dir = "E";
@@ -86,7 +79,6 @@ class Rover2 extends Component {
           state.position = [xCoor, yCoor];
           state.coordinates = "";
           this.props.setPosR(state, 2);
-          // this.setState({ inputCoordinates: "" });
         }
       } else {
         this.setState({ coordinates: "" });
@@ -96,7 +88,6 @@ class Rover2 extends Component {
       this.setState({ coordinates: "" });
       window.alert("The coordinates need to be integers for both x and y");
     }
-    console.log("Created grid, these are the dimensions", xCoor, yCoor, pDir);
   };
   sendCommands = e => {
     let each;
@@ -110,12 +101,10 @@ class Rover2 extends Component {
     each = split[0];
     split.shift();
     this.setState({ inputCommand: "" });
-    console.log("SPlit values", split, each);
     const end = split.length === 0 ? 1 : 0;
     if (each !== "M") {
       let currentDir = this.props.direction;
       let change = each === "L" ? 90 : 270;
-      console.log("what angle is each", change);
       currentDir += change;
       if (change === 270) {
         if (currentDir >= 360) {
@@ -216,11 +205,9 @@ class Rover2 extends Component {
       },
       2
     );
-    // this.setState({ position: [y, x], commandQueu: split });
   };
   cancelCommands = () => {
     this.props.executeCommands(0);
-    console.log("END of the commands", "FIN");
   };
 
   componentDidUpdate = (prevProps, prevState) => {
