@@ -9,7 +9,6 @@ const Rover = props => {
         style={{ widht: "85%", height: "85%", transform: `rotate(${-90}deg)` }}
         src={rover}
       />
-      {/* <div className="head">[X]</div> */}
     </div>
   );
 };
@@ -33,8 +32,6 @@ const gridDisplay = props => {
 
   return (
     <div>
-      {/* <Rover angle={props.angle} /> */}
-
       {yGrids
         .slice(0)
         .reverse()
@@ -51,11 +48,7 @@ const gridDisplay = props => {
                     <Rover style={{ height: "3em" }} angle={props.angle2} />
                   );
                 }
-                // if (row !== xPos && column !== yPos) {
                 return <div className="row" />;
-                // } else {
-                //   return <Rover className="row" angle={props.angle} />;
-                // }
               })}
             </div>
           );
