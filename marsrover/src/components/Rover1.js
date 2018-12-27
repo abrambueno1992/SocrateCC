@@ -30,11 +30,11 @@ class Rover1 extends Component {
       split[split.length - 1] === "M" ||
       split[split.length - 1] === undefined
     ) {
-      this.setState({ [e.target.name]: value });
+      this.setState({ inputCommand: value });
     }
     if (e.target.name === "inputCoordinates") {
       console.log("value of coordinates", value, this.state.inputCoordinates);
-      this.setState({ [e.target.name]: value });
+      this.setState({ inputCoordinates: value });
     }
 
     return;
@@ -254,6 +254,7 @@ class Rover1 extends Component {
           <input
             type="text"
             name="inputCoordinates"
+            className="inputCoordinates"
             placeHolder="3 5 N"
             value={this.state.inputCoordinates}
             onChange={this.handleChange}
@@ -267,6 +268,7 @@ class Rover1 extends Component {
           <input
             type="text"
             name="inputCommand"
+            className="inputCommand"
             placeHolder="LMLMLMLMM"
             value={this.state.inputCommand}
             onChange={this.handleChange}
