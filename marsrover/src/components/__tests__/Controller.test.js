@@ -30,6 +30,11 @@ it("should have Rover 1 and Rover 2 ", () => {
   expect(wrapped.find(Rover2).length).toEqual(1);
 });
 
+it("should have Crate Grid button and Send Commands button ", () => {
+  expect(wrapped.find(".inputGridBtn").length).toEqual(1);
+  expect(wrapped.find(".sendCommands").length).toEqual(1);
+});
+
 describe("the text input", () => {
   beforeEach(() => {
     wrapped.find("input.inputGrid").simulate("change", {
