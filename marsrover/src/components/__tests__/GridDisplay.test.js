@@ -21,7 +21,7 @@ afterEach(() => {
 });
 
 it("should have input for inputCoordinates and  inputCommand", () => {
-  expect(wrapped.find(".what").length).toEqual(2);
+  expect(wrapped.find(".what").length).toEqual(1);
   //   expect(wrapped.find(".inputCommand").length).toEqual(1);
 });
 
