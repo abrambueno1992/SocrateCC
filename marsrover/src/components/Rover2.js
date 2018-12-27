@@ -254,6 +254,7 @@ class Rover2 extends Component {
           <input
             type="text"
             name="inputCoordinates"
+            className="inputCoordinates"
             placeHolder="3 5 N"
             value={this.state.inputCoordinates}
             onChange={this.handleChange}
@@ -267,6 +268,7 @@ class Rover2 extends Component {
           <input
             type="text"
             name="inputCommand"
+            className="inputCommand"
             placeHolder="LMLMLMLMM"
             value={this.state.inputCommand}
             onChange={this.handleChange}
