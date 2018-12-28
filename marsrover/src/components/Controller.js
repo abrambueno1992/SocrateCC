@@ -21,7 +21,10 @@ class Controller extends Component {
       yGrids: 0,
 
       // the grid dimensions from input
-      inputGrid: ""
+      inputGrid: "",
+
+      // Display the grid === true by default
+      display: false
     };
   }
   handleGrid = e => {
@@ -65,18 +68,27 @@ class Controller extends Component {
     this.props.executeCommands(1);
   };
 
+  handleDisplay = () => {
+    this.setState({ display: !this.state.display });
+  };
+
   render() {
     return (
       <div>
-        <GridDisplay
-          angle={this.props.angle}
-          position={this.props.position}
-          xGridNumber={this.props.xGrids}
-          yGridNumber={this.props.yGrids}
-          angle2={this.props.angle2}
-          position2={this.props.position2}
-          className="GridDisplay"
-        />
+        {this.state.display === false ? null : (
+          <GridDisplay
+            angle={this.props.angle}
+            position={this.props.position}
+            xGridNumber={this.props.xGrids}
+            yGridNumber={this.props.yGrids}
+            angle2={this.props.angle2}
+            position2={this.props.position2}
+            className="GridDisplay"
+          />
+        )}
+        {this.props.grid !== null ? (
+          <button onClick={this.handleDisplay}>Toggle Grid</button>
+        ) : null}
 
         <div className="Coordinates">
           <h5>Enter the max x and y coordinates, space separated: x y</h5>
@@ -90,14 +102,13 @@ class Controller extends Component {
             onChange={this.handleGrid}
           />
         </div>
-
         {/* <h3>
           This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
         </h3> */}
         <div>
           <Rover1 />
           <Rover2 />
-          {this.props.xGrids !== 0 || this.props.yGrids !== 0 ? (
+          {this.props.grid !== null ? (
             <div className="Position">
               <h3>Current positions of Rovers</h3>
               <span className="CurrentPosition1">
@@ -131,6 +142,7 @@ const mapStateToProps = state => {
     // Grid
     xGrids: state.xGrids,
     yGrids: state.yGrids,
+    grid: state.grid,
 
     // Clockwise angle
     direction: state.direction,
