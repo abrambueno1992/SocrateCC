@@ -1,3 +1,6 @@
+body {
+  background: beige;
+}
 .row {
   height: 6em;
   background: green;
