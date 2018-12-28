@@ -4,7 +4,10 @@ import "./Grid.css";
 import rover from "../rover.png";
 export const Rover = props => {
   return (
-    <div className="rover" style={{ transform: `rotate(${props.angle}deg)` }}>
+    <div
+      className={props.className}
+      style={{ transform: `rotate(${props.angle}deg)` }}
+    >
       <img
         style={{ widht: "85%", height: "85%", transform: `rotate(${-90}deg)` }}
         src={rover}
@@ -42,8 +45,8 @@ export const gridDisplay = props => {
                 if (row === xPos && yPos === column)
                   return (
                     <Rover
-                      className="Rover"
-                      style={{ height: "3em" }}
+                      className="Rover1"
+                      // style={{ height: "3em" }}
                       angle={props.angle}
                       key={column + x}
                     />
@@ -51,7 +54,7 @@ export const gridDisplay = props => {
                 if (row === xPos2 && column === yPos2) {
                   return (
                     <Rover
-                      className="Rover"
+                      className="Rover2"
                       style={{ height: "3em" }}
                       angle={props.angle2}
                       key={column + x}
