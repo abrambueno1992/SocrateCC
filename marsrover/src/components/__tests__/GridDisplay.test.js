@@ -65,6 +65,22 @@ describe("Check for rover", () => {
   });
 });
 
+describe("check gridDisplay functionality", () => {
+  it("should receive proper props", () => {
+    const props = {
+      angle: 90,
+      position: [2, 3],
+      xGridNumber: 7,
+      yGridNumber: 8,
+      angle2: 90,
+      position2: [3, 3],
+      className: "GridDisplay"
+    };
+    const action = funcs.gridDisplay(props);
+    console.log("Action is...", action);
+  });
+});
+
 // describe("the text input", () => {
 //   beforeEach(() => {
 //     wrapped.find("input.inputGrid").simulate("change", {
