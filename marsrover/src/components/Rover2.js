@@ -167,8 +167,8 @@ class Rover2 extends Component {
     return (
       <div className="Rover2">
         <div>
-          <h3>Rover 2: </h3>
-          <h5>
+          <h3 className="R2header">Rover 2: </h3>
+          <h5 className="R2header">
             Enter the coordinates of the rover: x y direction. x and y are
             integers, direction = N,S,E,W
           </h5>
@@ -182,7 +182,7 @@ class Rover2 extends Component {
           />
         </div>
         <div>
-          <h6>
+          <h6 className="R2header">
             Enter instructions for rover, sequential non-space separated (L =
             left, R = right, M = move): LRM
           </h6>
