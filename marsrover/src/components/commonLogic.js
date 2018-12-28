@@ -6,7 +6,6 @@ export const coordinateLogic = (pDir, xCoor, yCoor) => {
     state.angle = 90;
     state.position = [xCoor, yCoor];
     state.coordinates = "";
-    // this.props.setPosR(state, 1);
     return state;
   } else if (pDir === "W") {
     state.direction = 180;
@@ -14,7 +13,6 @@ export const coordinateLogic = (pDir, xCoor, yCoor) => {
     state.angle = 0;
     state.position = [xCoor, yCoor];
     state.coordinates = "";
-    // this.props.setPosR(state, 1);
     return state;
   } else if (pDir === "S") {
     state.direction = 270;
@@ -22,7 +20,6 @@ export const coordinateLogic = (pDir, xCoor, yCoor) => {
     state.angle = 270;
     state.position = [xCoor, yCoor];
     state.coordinates = "";
-    // this.props.setPosR(state, 1);
     return state;
   } else {
     state.direction = 0;
@@ -30,14 +27,12 @@ export const coordinateLogic = (pDir, xCoor, yCoor) => {
     state.angle = 180;
     state.position = [xCoor, yCoor];
     state.coordinates = "";
-    // this.props.setPosR(state, 1);
     return state;
   }
 };
 
 export const directionLogic = (currentDir, split, end) => {
   if (currentDir === 90) {
-    // this.props.executeCMDdir(
     return {
       direction: currentDir,
       dir: "N",
@@ -45,10 +40,7 @@ export const directionLogic = (currentDir, split, end) => {
       commandQueu: split,
       execute: end
     };
-    //   1
-    // );
   } else if (currentDir === 180) {
-    // this.props.executeCMDdir(
     return {
       direction: currentDir,
       dir: "W",
@@ -56,10 +48,7 @@ export const directionLogic = (currentDir, split, end) => {
       commandQueu: split,
       execute: end
     };
-    //   1
-    // );
   } else if (currentDir === 270) {
-    // this.props.executeCMDdir(
     return {
       direction: currentDir,
       dir: "S",
@@ -67,10 +56,7 @@ export const directionLogic = (currentDir, split, end) => {
       commandQueu: split,
       execute: end
     };
-    //   1
-    // );
   } else {
-    // this.props.executeCMDdir(
     return {
       direction: currentDir,
       dir: "E",
@@ -78,7 +64,5 @@ export const directionLogic = (currentDir, split, end) => {
       commandQueu: split,
       execute: end
     };
-    //   1
-    // );
   }
 };
