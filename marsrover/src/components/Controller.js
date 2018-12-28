@@ -97,17 +97,19 @@ class Controller extends Component {
         <div>
           <Rover1 />
           <Rover2 />
-          <div className="Position">
-            <h3>Current positions of Rovers</h3>
-            <span>
-              Rover 1: (x: {this.props.position[1]}, y:
-              {this.props.position[0]}) {this.props.dir}
-            </span>
-            <span>
-              Rover 2: (x: {this.props.position2[1]}, y:
-              {this.props.position2[0]}) {this.props.dir2}
-            </span>
-          </div>
+          {this.props.xGrids !== 0 || this.props.yGrids !== 0 ? (
+            <div className="Position">
+              <h3>Current positions of Rovers</h3>
+              <span className="CurrentPosition1">
+                Rover 1: (x: {this.props.position[1]}, y:
+                {this.props.position[0]}) {this.props.dir}
+              </span>
+              <span className="CurrentPosition2">
+                Rover 2: (x: {this.props.position2[1]}, y:
+                {this.props.position2[0]}) {this.props.dir2}
+              </span>
+            </div>
+          ) : null}
 
           <button className="inputGridBtn" onClick={this.createGrid}>
             Create Grid
