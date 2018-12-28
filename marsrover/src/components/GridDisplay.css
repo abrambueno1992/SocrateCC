@@ -12,3 +12,23 @@
   width: 100%;
   border: 1px solid red;
 }
+
+.Coordinates {
+  border: 1px solid black;
+  margin-top: 1em;
+  background: #cccccc;
+}
+
+.Position {
+  border: 1px solid black;
+  margin-top: 1em;
+  background: #cccccc;
+}
+.inputGridBtn {
+  border: 1px solid black;
+  margin-top: 1em;
+}
+.sendCommands {
+  border: 1px solid black;
+  margin-top: 1em;
+}

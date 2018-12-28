@@ -78,7 +78,7 @@ class Controller extends Component {
           className="GridDisplay"
         />
 
-        <div>
+        <div className="Coordinates">
           <h5>Enter the max x and y coordinates, space separated: x y</h5>
 
           <input
@@ -97,7 +97,7 @@ class Controller extends Component {
         <div>
           <Rover1 />
           <Rover2 />
-          <div>
+          <div className="Position">
             <h3>Current positions of Rovers</h3>
             <span>
               Rover 1: (x: {this.props.position[1]}, y:
