@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPosR, executeCMDdir, executeCMDmv } from "../actions/rover";
 import { executeCommands } from "../actions/controller";
-import { coordinateLogic } from "./commonLogic";
+import { coordinateLogic, directionLogic } from "./commonLogic";
 class Rover1 extends Component {
   constructor(props) {
     super(props);
@@ -49,12 +49,11 @@ class Rover1 extends Component {
     const xCoor = parseInt(coordinates[1], 10);
     const yCoor = parseInt(coordinates[0], 10);
     const pDir = coordinates[2].toUpperCase();
-    const state = {};
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
-        const result = coordinateLogic(pDir, xCoor, yCoor);
-        this.props.setPosR(result, 1);
+        const state = coordinateLogic(pDir, xCoor, yCoor);
+        this.props.setPosR(state, 1);
         // if (pDir === "N") {
         //   state.direction = 90;
         //   state.dir = "N";
@@ -117,51 +116,53 @@ class Rover1 extends Component {
         }
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
-      if (currentDir === 90) {
-        this.props.executeCMDdir(
-          {
-            direction: currentDir,
-            dir: "N",
-            angle: 90,
-            commandQueu: split,
-            execute: end
-          },
-          1
-        );
-      } else if (currentDir === 180) {
-        this.props.executeCMDdir(
-          {
-            direction: currentDir,
-            dir: "W",
-            angle: 0,
-            commandQueu: split,
-            execute: end
-          },
-          1
-        );
-      } else if (currentDir === 270) {
-        this.props.executeCMDdir(
-          {
-            direction: currentDir,
-            dir: "S",
-            angle: 270,
-            commandQueu: split,
-            execute: end
-          },
-          1
-        );
-      } else {
-        this.props.executeCMDdir(
-          {
-            direction: currentDir,
-            dir: "E",
-            angle: 180,
-            commandQueu: split,
-            execute: end
-          },
-          1
-        );
-      }
+      const state = directionLogic(currentDir, split, end);
+      this.props.executeCMDdir(state, 1);
+      // if (currentDir === 90) {
+      //   this.props.executeCMDdir(
+      //     {
+      //       direction: currentDir,
+      //       dir: "N",
+      //       angle: 90,
+      //       commandQueu: split,
+      //       execute: end
+      //     },
+      //     1
+      //   );
+      // } else if (currentDir === 180) {
+      //   this.props.executeCMDdir(
+      //     {
+      //       direction: currentDir,
+      //       dir: "W",
+      //       angle: 0,
+      //       commandQueu: split,
+      //       execute: end
+      //     },
+      //     1
+      //   );
+      // } else if (currentDir === 270) {
+      //   this.props.executeCMDdir(
+      //     {
+      //       direction: currentDir,
+      //       dir: "S",
+      //       angle: 270,
+      //       commandQueu: split,
+      //       execute: end
+      //     },
+      //     1
+      //   );
+      // } else {
+      //   this.props.executeCMDdir(
+      //     {
+      //       direction: currentDir,
+      //       dir: "E",
+      //       angle: 180,
+      //       commandQueu: split,
+      //       execute: end
+      //     },
+      //     1
+      //   );
+      // }
     } else {
       this.handleMove(split);
     }

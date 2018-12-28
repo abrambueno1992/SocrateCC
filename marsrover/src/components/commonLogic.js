@@ -34,3 +34,51 @@ export const coordinateLogic = (pDir, xCoor, yCoor) => {
     return state;
   }
 };
+
+export const directionLogic = (currentDir, split, end) => {
+  if (currentDir === 90) {
+    // this.props.executeCMDdir(
+    return {
+      direction: currentDir,
+      dir: "N",
+      angle: 90,
+      commandQueu: split,
+      execute: end
+    };
+    //   1
+    // );
+  } else if (currentDir === 180) {
+    // this.props.executeCMDdir(
+    return {
+      direction: currentDir,
+      dir: "W",
+      angle: 0,
+      commandQueu: split,
+      execute: end
+    };
+    //   1
+    // );
+  } else if (currentDir === 270) {
+    // this.props.executeCMDdir(
+    return {
+      direction: currentDir,
+      dir: "S",
+      angle: 270,
+      commandQueu: split,
+      execute: end
+    };
+    //   1
+    // );
+  } else {
+    // this.props.executeCMDdir(
+    return {
+      direction: currentDir,
+      dir: "E",
+      angle: 180,
+      commandQueu: split,
+      execute: end
+    };
+    //   1
+    // );
+  }
+};
