@@ -21,8 +21,8 @@ beforeEach(() => {
           position2={(6, 7)}
           className="GridDisplay"
         />
-        <Rover1 />
-        <Rover2 />
+        {/* <Rover1 />
+        <Rover2 /> */}
       </Controller>
     </Root>
   );
@@ -34,26 +34,27 @@ afterEach(() => {
 
 it("should have input for inputCoordinates and  inputCommand", () => {
   expect(wrapped.find(".what").length).toEqual(1);
-  //   expect(wrapped.find(".inputCommand").length).toEqual(1);
+  // expect(wrapped.find(".column").length).toEqual(1);
+  console.log(wrapped.props());
 });
 
-describe("the text input", () => {
-  beforeEach(() => {
-    wrapped.find("input.inputGrid").simulate("change", {
-      target: { value: "6 7" }
-    });
-    wrapped.update();
-  });
-  it("should have an input that users can type in", () => {
-    expect(wrapped.find(".inputGrid").prop("value")).toEqual("6 7");
-  });
+// describe("the text input", () => {
+//   beforeEach(() => {
+//     wrapped.find("input.inputGrid").simulate("change", {
+//       target: { value: "6 7" }
+//     });
+//     wrapped.update();
+//   });
+//   it("should have an input that users can type in", () => {
+//     expect(wrapped.find(".inputGrid").prop("value")).toEqual("6 7");
+//   });
 
-  it("should not clear inputGrid value", () => {
-    wrapped.find("button.inputGridBtn").simulate("submit");
-    wrapped.update();
-    expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
-  });
-});
+//   it("should not clear inputGrid value", () => {
+//     wrapped.find("button.inputGridBtn").simulate("submit");
+//     wrapped.update();
+//     expect(wrapped.find("input.inputGrid").prop("value")).toEqual("6 7");
+//   });
+// });
 
 // describe("the text input", () => {
 //   beforeEach(() => {
