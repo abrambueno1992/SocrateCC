@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./Rover1.css";
 // redux
 import { connect } from "react-redux";
 import { setPosR, executeCMDdir, executeCMDmv } from "../actions/rover";
@@ -164,7 +164,7 @@ class Rover1 extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Rover1">
         <div>
           <h3>Rover 1: </h3>
           <h5>

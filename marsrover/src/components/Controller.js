@@ -77,17 +77,7 @@ class Controller extends Component {
           position2={this.props.position2}
           className="GridDisplay"
         />
-        <div>
-          <h3>Current positions of Rovers</h3>
-          <span>
-            Rover 1: (x: {this.props.position[1]}, y:
-            {this.props.position[0]}) {this.props.dir}
-          </span>
-          <span>
-            Rover 2: (x: {this.props.position2[1]}, y:
-            {this.props.position2[0]}) {this.props.dir2}
-          </span>
-        </div>
+
         <div>
           <h5>Enter the max x and y coordinates, space separated: x y</h5>
 
@@ -101,12 +91,24 @@ class Controller extends Component {
           />
         </div>
 
-        <h3>
+        {/* <h3>
           This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
-        </h3>
+        </h3> */}
         <div>
           <Rover1 />
           <Rover2 />
+          <div>
+            <h3>Current positions of Rovers</h3>
+            <span>
+              Rover 1: (x: {this.props.position[1]}, y:
+              {this.props.position[0]}) {this.props.dir}
+            </span>
+            <span>
+              Rover 2: (x: {this.props.position2[1]}, y:
+              {this.props.position2[0]}) {this.props.dir2}
+            </span>
+          </div>
+
           <button className="inputGridBtn" onClick={this.createGrid}>
             Create Grid
           </button>
