@@ -52,6 +52,7 @@ class Rover1 extends Component {
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
+        // Call the coordinateLogic method to get the final state
         const state = coordinateLogic(pDir, xCoor, yCoor);
         this.props.setPosR(state, 1);
       } else {
@@ -87,6 +88,7 @@ class Rover1 extends Component {
         }
       }
       currentDir = currentDir === 360 ? 0 : currentDir;
+      // Call the directionLogic method to get the final state
       const state = directionLogic(currentDir, split, end);
       this.props.executeCMDdir(state, 1);
     } else {
