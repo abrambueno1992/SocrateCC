@@ -6,6 +6,7 @@ import Controller from "../Controller";
 import GridDisplay from "../GridDisplay";
 import Rover1 from "../Rover1";
 import Rover2 from "../Rover2";
+const funcs = require("../GridDisplay");
 
 let wrapped;
 beforeEach(() => {
@@ -35,7 +36,33 @@ afterEach(() => {
 it("should have input for inputCoordinates and  inputCommand", () => {
   expect(wrapped.find(".what").length).toEqual(1);
   // expect(wrapped.find(".column").length).toEqual(1);
-  console.log(wrapped.props());
+  // console.log(wrapped.props());
+});
+
+describe("Check for rover", () => {
+  it("should have the Rover", () => {
+    const object = {
+      angle: 90
+    };
+    const rover = "rover.png";
+
+    const action = funcs.Rover(object);
+    expect(action).toEqual(
+      <div
+        className="rover"
+        style={{ transform: `rotate(${object.angle}deg)` }}
+      >
+        <img
+          style={{
+            widht: "85%",
+            height: "85%",
+            transform: `rotate(${-90}deg)`
+          }}
+          src={rover}
+        />
+      </div>
+    );
+  });
 });
 
 // describe("the text input", () => {

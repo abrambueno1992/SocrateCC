@@ -54,7 +54,6 @@ describe("should return updated direction", () => {
       execute: end
     };
     // currentDir === 90
-
     const action = funcs.directionLogic(currentDir, split, 1);
     expect(action).toEqual(state);
 

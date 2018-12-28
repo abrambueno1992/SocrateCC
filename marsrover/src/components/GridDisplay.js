@@ -2,7 +2,7 @@ import React from "react";
 import "./GridDisplay.css";
 import "./Grid.css";
 import rover from "../rover.png";
-const Rover = props => {
+export const Rover = props => {
   return (
     <div className="rover" style={{ transform: `rotate(${props.angle}deg)` }}>
       <img
@@ -13,7 +13,7 @@ const Rover = props => {
   );
 };
 
-const gridDisplay = props => {
+export const gridDisplay = props => {
   const { xGridNumber, yGridNumber } = props;
 
   const xGrids = [];
