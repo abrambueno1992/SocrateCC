@@ -91,7 +91,9 @@ class Controller extends Component {
         ) : null}
 
         <div className="Coordinates">
-          <h5>Enter the max x and y coordinates, space separated: x y</h5>
+          <h5 className="CHeader">
+            Enter the max x and y coordinates, space separated: x y
+          </h5>
 
           <input
             type="text"

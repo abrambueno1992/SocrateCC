@@ -18,6 +18,10 @@
   margin-top: 1em;
   background: #cccccc;
 }
+.CHeader {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 .Position {
   border: 1px solid black;
