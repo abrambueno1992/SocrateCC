@@ -43,7 +43,7 @@ describe("should return updated coordinates", () => {
 
 describe("should return updated direction", () => {
   it("should return the proper logical direction", () => {
-    const currentDir = 90;
+    let currentDir = 90;
     const split = ["M", "M", "R"];
     const end = 1;
     const state = {
@@ -53,7 +53,33 @@ describe("should return updated direction", () => {
       commandQueu: split,
       execute: end
     };
+    // currentDir === 90
+
     const action = funcs.directionLogic(currentDir, split, 1);
     expect(action).toEqual(state);
+
+    // currentDir === 180
+    currentDir = 180;
+    state.dir = "W";
+    state.direction = currentDir;
+    state.angle = 0;
+    const action2 = funcs.directionLogic(currentDir, split, 1);
+    expect(action2).toEqual(state);
+
+    // currentDir === 270
+    currentDir = 270;
+    state.dir = "S";
+    state.direction = currentDir;
+    state.angle = 270;
+    const action3 = funcs.directionLogic(currentDir, split, 1);
+    expect(action3).toEqual(state);
+
+    // currentDir === 0
+    currentDir = 0;
+    state.dir = "E";
+    state.direction = currentDir;
+    state.angle = 180;
+    const action4 = funcs.directionLogic(currentDir, split, 1);
+    expect(action4).toEqual(state);
   });
 });
