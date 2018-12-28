@@ -77,7 +77,15 @@ describe("check gridDisplay functionality", () => {
       className: "GridDisplay"
     };
     const action = funcs.gridDisplay(props);
-    console.log("Action is...", action);
+    console.log("Action is...", action.props.children[0].props.children.length);
+    // number of columns
+    const column = 8;
+    console.log(action.props.children.length);
+
+    expect(action.props.children.length).toEqual(column);
+    // number of rows
+    const row = 7;
+    expect(action.props.children[0].props.children.length).toEqual(row);
   });
 });
 
