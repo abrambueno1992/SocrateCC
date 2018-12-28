@@ -54,35 +54,6 @@ class Rover1 extends Component {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
         const state = coordinateLogic(pDir, xCoor, yCoor);
         this.props.setPosR(state, 1);
-        // if (pDir === "N") {
-        //   state.direction = 90;
-        //   state.dir = "N";
-        //   state.angle = 90;
-        //   state.position = [xCoor, yCoor];
-        //   state.coordinates = "";
-        //   this.props.setPosR(state, 1);
-        // } else if (pDir === "W") {
-        //   state.direction = 180;
-        //   state.dir = "W";
-        //   state.angle = 0;
-        //   state.position = [xCoor, yCoor];
-        //   state.coordinates = "";
-        //   this.props.setPosR(state, 1);
-        // } else if (pDir === "S") {
-        //   state.direction = 270;
-        //   state.dir = "S";
-        //   state.angle = 270;
-        //   state.position = [xCoor, yCoor];
-        //   state.coordinates = "";
-        //   this.props.setPosR(state, 1);
-        // } else {
-        //   state.direction = 0;
-        //   state.dir = "E";
-        //   state.angle = 180;
-        //   state.position = [xCoor, yCoor];
-        //   state.coordinates = "";
-        //   this.props.setPosR(state, 1);
-        // }
       } else {
         this.setState({ coordinates: "" });
         window.alert("The direction needs to be N, S, E or W");
@@ -118,51 +89,6 @@ class Rover1 extends Component {
       currentDir = currentDir === 360 ? 0 : currentDir;
       const state = directionLogic(currentDir, split, end);
       this.props.executeCMDdir(state, 1);
-      // if (currentDir === 90) {
-      //   this.props.executeCMDdir(
-      //     {
-      //       direction: currentDir,
-      //       dir: "N",
-      //       angle: 90,
-      //       commandQueu: split,
-      //       execute: end
-      //     },
-      //     1
-      //   );
-      // } else if (currentDir === 180) {
-      //   this.props.executeCMDdir(
-      //     {
-      //       direction: currentDir,
-      //       dir: "W",
-      //       angle: 0,
-      //       commandQueu: split,
-      //       execute: end
-      //     },
-      //     1
-      //   );
-      // } else if (currentDir === 270) {
-      //   this.props.executeCMDdir(
-      //     {
-      //       direction: currentDir,
-      //       dir: "S",
-      //       angle: 270,
-      //       commandQueu: split,
-      //       execute: end
-      //     },
-      //     1
-      //   );
-      // } else {
-      //   this.props.executeCMDdir(
-      //     {
-      //       direction: currentDir,
-      //       dir: "E",
-      //       angle: 180,
-      //       commandQueu: split,
-      //       execute: end
-      //     },
-      //     1
-      //   );
-      // }
     } else {
       this.handleMove(split);
     }
