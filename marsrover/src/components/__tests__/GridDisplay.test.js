@@ -12,7 +12,15 @@ beforeEach(() => {
   wrapped = mount(
     <Root>
       <Controller>
-        <GridDisplay />
+        <GridDisplay
+          angle={90}
+          position={[5, 2]}
+          xGridNumber={7}
+          yGridNumber={8}
+          angle2={90}
+          position2={(6, 7)}
+          className="GridDisplay"
+        />
         <Rover1 />
         <Rover2 />
       </Controller>
