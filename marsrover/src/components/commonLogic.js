@@ -1,4 +1,4 @@
-export const coordinateLogic = pDir => {
+export const coordinateLogic = (pDir, xCoor, yCoor) => {
   const state = {};
   if (pDir === "N") {
     state.direction = 90;

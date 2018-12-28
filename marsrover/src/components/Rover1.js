@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPosR, executeCMDdir, executeCMDmv } from "../actions/rover";
 import { executeCommands } from "../actions/controller";
+import { coordinateLogic } from "./commonLogic";
 class Rover1 extends Component {
   constructor(props) {
     super(props);
@@ -52,35 +53,37 @@ class Rover1 extends Component {
 
     if (0 <= xCoor && 0 <= yCoor) {
       if (pDir === "N" || pDir === "S" || pDir === "E" || pDir === "W") {
-        if (pDir === "N") {
-          state.direction = 90;
-          state.dir = "N";
-          state.angle = 90;
-          state.position = [xCoor, yCoor];
-          state.coordinates = "";
-          this.props.setPosR(state, 1);
-        } else if (pDir === "W") {
-          state.direction = 180;
-          state.dir = "W";
-          state.angle = 0;
-          state.position = [xCoor, yCoor];
-          state.coordinates = "";
-          this.props.setPosR(state, 1);
-        } else if (pDir === "S") {
-          state.direction = 270;
-          state.dir = "S";
-          state.angle = 270;
-          state.position = [xCoor, yCoor];
-          state.coordinates = "";
-          this.props.setPosR(state, 1);
-        } else {
-          state.direction = 0;
-          state.dir = "E";
-          state.angle = 180;
-          state.position = [xCoor, yCoor];
-          state.coordinates = "";
-          this.props.setPosR(state, 1);
-        }
+        const result = coordinateLogic(pDir, xCoor, yCoor);
+        this.props.setPosR(result, 1);
+        // if (pDir === "N") {
+        //   state.direction = 90;
+        //   state.dir = "N";
+        //   state.angle = 90;
+        //   state.position = [xCoor, yCoor];
+        //   state.coordinates = "";
+        //   this.props.setPosR(state, 1);
+        // } else if (pDir === "W") {
+        //   state.direction = 180;
+        //   state.dir = "W";
+        //   state.angle = 0;
+        //   state.position = [xCoor, yCoor];
+        //   state.coordinates = "";
+        //   this.props.setPosR(state, 1);
+        // } else if (pDir === "S") {
+        //   state.direction = 270;
+        //   state.dir = "S";
+        //   state.angle = 270;
+        //   state.position = [xCoor, yCoor];
+        //   state.coordinates = "";
+        //   this.props.setPosR(state, 1);
+        // } else {
+        //   state.direction = 0;
+        //   state.dir = "E";
+        //   state.angle = 180;
+        //   state.position = [xCoor, yCoor];
+        //   state.coordinates = "";
+        //   this.props.setPosR(state, 1);
+        // }
       } else {
         this.setState({ coordinates: "" });
         window.alert("The direction needs to be N, S, E or W");
