@@ -45,7 +45,7 @@ export const gridDisplay = props => {
                 if (row === xPos && yPos === column)
                   return (
                     <Rover
-                      className="Rover1"
+                      className="DRover1"
                       // style={{ height: "3em" }}
                       angle={props.angle}
                       key={column + x}
@@ -54,7 +54,7 @@ export const gridDisplay = props => {
                 if (row === xPos2 && column === yPos2) {
                   return (
                     <Rover
-                      className="Rover2"
+                      className="DRover2"
                       style={{ height: "3em" }}
                       angle={props.angle2}
                       key={column + x}
