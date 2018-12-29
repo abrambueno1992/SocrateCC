@@ -19,6 +19,7 @@ class Controller extends Component {
       // grid dimensions
       xGrids: 0,
       yGrids: 0,
+      gridButton: "Show Grid",
 
       // the grid dimensions from input
       inputGrid: "",
@@ -69,7 +70,11 @@ class Controller extends Component {
   };
 
   handleDisplay = () => {
-    this.setState({ display: !this.state.display });
+    if (this.state.display === true) {
+      this.setState({ display: !this.state.display, gridButton: "Show Grid" });
+    } else {
+      this.setState({ display: !this.state.display, gridButton: "Hide Grid" });
+    }
   };
 
   render() {
@@ -87,7 +92,7 @@ class Controller extends Component {
           />
         )}
         {this.props.grid !== null ? (
-          <button onClick={this.handleDisplay}>Toggle Grid</button>
+          <button onClick={this.handleDisplay}>{this.state.gridButton}</button>
         ) : null}
 
         <div className="Coordinates">
