@@ -33,12 +33,12 @@
   display: inline;
 }
 .DRover1 {
-  background: orange;
+  /* background: orange; */
   height: 100%;
   width: 100%;
 }
 .DRover2 {
-  background: red;
+  /* background: red; */
   height: 100%;
   width: 100%;
 }

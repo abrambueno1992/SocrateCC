@@ -8,10 +8,29 @@ export const Rover = props => {
       className={props.className}
       style={{ transform: `rotate(${props.angle}deg)` }}
     >
-      <img
-        style={{ widht: "85%", height: "85%", transform: `rotate(${-90}deg)` }}
-        src={rover}
-      />
+      {props.className === "DRover2" ? (
+        <img
+          style={{
+            widht: "85%",
+            background: "orange",
+            height: "85%",
+            transform: `rotate(${-90}deg)`
+          }}
+          src={rover}
+          // className={props.className}
+        />
+      ) : (
+        <img
+          style={{
+            widht: "85%",
+            background: "red",
+            height: "85%",
+            transform: `rotate(${-90}deg)`
+          }}
+          src={rover}
+          // className={props.className}
+        />
+      )}
     </div>
   );
 };
@@ -55,7 +74,7 @@ export const gridDisplay = props => {
                   return (
                     <Rover
                       className="DRover2"
-                      style={{ height: "3em" }}
+                      // style={{ height: "3em" }}
                       angle={props.angle2}
                       key={column + x}
                     />
