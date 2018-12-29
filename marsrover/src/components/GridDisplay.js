@@ -14,7 +14,8 @@ export const Rover = props => {
             widht: "85%",
             background: "orange",
             height: "85%",
-            transform: `rotate(${-90}deg)`
+            transform: `rotate(${-90}deg)`,
+            border: "3px solid red"
           }}
           src={rover}
           // className={props.className}
@@ -25,7 +26,8 @@ export const Rover = props => {
             widht: "85%",
             background: "red",
             height: "85%",
-            transform: `rotate(${-90}deg)`
+            transform: `rotate(${-90}deg)`,
+            border: "3px solid orange"
           }}
           src={rover}
           // className={props.className}
