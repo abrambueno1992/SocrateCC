@@ -23,72 +23,79 @@ Rover 1 and Rover 2 initial state:
 
   <!-- Rover position -->
 
-position: [0, 0],
-position2: [0, 0],
+    position: [0, 0],
+    position2: [0, 0],
 
 <!-- Grid -->
 
-xGrids: 0,
-yGrids: 0,
+    xGrids: 0,
+    yGrids: 0,
 
 <!--  Clockwise angle -->
 
-direction: 90,
-direction2: 90,
+    direction: 90,
+    direction2: 90,
 
 <!--  Counter-clockwise angle -->
   <!--  needed for CSS transform -->
 
-angle: 90,
-angle2: 90,
+    angle: 90,
+    angle2: 90,
 
   <!-- Direction as NSEW -->
 
-dir: "N",
-dir2: "N",
+    dir: "N",
+    dir2: "N",
 
 <!-- the queue of commands from input -->
   <!-- converted to an array to keep track -->
 
-commandQueu: [],
-commandQueu2: [],
+    commandQueu: [],
+    commandQueu2: [],
 
 The other state is part of Controller or is shared by both Rover1 and Rover2, such as danger (danger is not actually used).
 
 <!-- Grid -->
 
-grid: null,
+    grid: null,
 
 <!--  When the rover was going out of boundary. -->
 
   <!-- Will stop before going out of boundary -->
 
-danger: false,
+    danger: false,
 
   <!-- Starts executing when it's not zero -->
 
-execute: 0
+    execute: 0
 
 ### `Controller Component State`
 
 <!-- description of button -->
 
-gridButton: "Show Grid",
+    gridButton: "Show Grid",
 
 <!-- the grid dimensions from input -->
 
-inputGrid: "",
+    inputGrid: "",
 
 <!-- Display the grid === true by default -->
 
-display: false
+    display: false
 
 ### `Rover Component States`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Both Rover1 and Rover2 have identical states. Because of React's component scope, both components can have state with the exact same name, but their values are independent of each other.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- // input for the coordinates -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+      inputCoordinates: "",
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<!-- When the rover was going out of boundary. -->
+<!-- Will stop before going out of boundary -->
+
+      danger: false,
+
+<!-- input for the commands -->
+
+      inputCommand: ""
