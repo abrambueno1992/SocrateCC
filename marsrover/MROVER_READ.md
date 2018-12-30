@@ -53,6 +53,8 @@ Rover 1 and Rover 2 initial state:
     commandQueu: [],
     commandQueu2: [],
     ![alt text](src/ReduxFlow.png)
+    ![alt text](src/ComponentFlow.png)
+    ![alt text](src/rover.png)
 
 The other state is part of Controller or is shared by both Rover1 and Rover2, such as danger (danger is not actually used).
 
