@@ -30,10 +30,6 @@ const initialState = {
   dir: "N",
   dir2: "N",
 
-  // When the rover was going out of boundary.
-  //  Will stop before going out of boundary
-  danger: false,
-
   // the queue of commands from input
   // converted to an array to keep track
   commandQueu: [],
@@ -48,17 +44,15 @@ const roverStates = (state = initialState, action) => {
         position2: action.payload.position,
         direction2: action.payload.direction,
         dir2: action.payload.dir,
-        angle2: action.payload.angle,
-        danger2: action.danger
+        angle2: action.payload.angle
       });
     case SET_POSITION_R1:
       return Object.assign({}, state, {
         position: action.payload.position,
         direction: action.payload.direction,
         dir: action.payload.dir,
-        angle: action.payload.angle,
+        angle: action.payload.angle
         // coordinates: action.payload.direction,
-        danger: action.danger
       });
     case SET_GRID:
       return Object.assign({}, state, {
@@ -73,7 +67,6 @@ const roverStates = (state = initialState, action) => {
         dir: action.payload.dir,
         angle: action.payload.angle,
         commandQueu: action.payload.commandQueu,
-        danger: action.danger,
         execute: state.execute + action.payload.execute
       });
     case EXECUTE_CMD_DIR2:
@@ -82,7 +75,6 @@ const roverStates = (state = initialState, action) => {
         dir2: action.payload.dir,
         angle2: action.payload.angle,
         commandQueu2: action.payload.commandQueu,
-        danger: action.danger,
         execute: state.execute + action.payload.execute
       });
 
