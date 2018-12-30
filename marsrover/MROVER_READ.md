@@ -21,68 +21,69 @@ The redux store has state for Rover1 component, Rover2 component, and Controller
 Rover1 and Rover2 have identical state naming, but differentiate only by the ending integer.
 Rover 1 and Rover 2 initial state:
 
-  <!-- Rover position -->
+![alt text](src/ReduxFlow.png)
 
-    position: [0, 0],
-    position2: [0, 0],
+Rover position
 
-<!-- Grid -->
+    position: [0, 0]
+    position2: [0, 0]
 
-    xGrids: 0,
-    yGrids: 0,
+Grid
 
-<!--  Clockwise angle -->
+    xGrids: 0
+    yGrids: 0
 
-    direction: 90,
-    direction2: 90,
+Clockwise angle
 
-<!--  Counter-clockwise angle -->
-  <!--  needed for CSS transform -->
+    direction: 90
+    direction2: 90
 
-    angle: 90,
-    angle2: 90,
+Counter-clockwise angle
+needed for CSS transform
 
-  <!-- Direction as NSEW -->
+    angle: 90
+    angle2: 90
 
-    dir: "N",
-    dir2: "N",
+Direction as NSEW
 
-<!-- the queue of commands from input -->
-  <!-- converted to an array to keep track -->
+    dir: "N"
+    dir2: "N"
 
-    commandQueu: [],
-    commandQueu2: [],
-    ![alt text](ReduxFlow.png)
-    ![alt text](ComponentFlow.png)
-    ![alt text](rover.png)
+the queue of commands from input
+converted to an array to keep track
+
+    commandQueu: []
+    commandQueu2: []
 
 The other state is part of Controller or is shared by both Rover1 and Rover2, such as danger (danger is not actually used).
 
-<!-- Grid -->
+Grid
 
     grid: null,
 
-<!--  When the rover was going out of boundary. -->
+When the rover was going out of boundary.
 
-  <!-- Will stop before going out of boundary -->
+Will stop before going out of boundary
 
     danger: false,
 
-  <!-- Starts executing when it's not zero -->
+Starts executing when it's not zero
 
     execute: 0
 
 ### `Controller Component State`
 
-<!-- description of button -->
+![alt text](src/ComponentFlow.png)
+
+description of button
 
     gridButton: "Show Grid",
 
-<!-- the grid dimensions from input -->
+the grid dimensions from input
 
     inputGrid: "",
 
-<!-- Display the grid === true by default -->
+Display the grid === true by default
 
     display: false
 
@@ -90,15 +91,15 @@ The other state is part of Controller or is shared by both Rover1 and Rover2, su
 
 Both Rover1 and Rover2 have identical states. Because of React's component scope, both components can have state with the exact same name, but their values are independent of each other.
 
-<!-- // input for the coordinates -->
+// input for the coordinates
 
       inputCoordinates: "",
 
-<!-- When the rover was going out of boundary. -->
-<!-- Will stop before going out of boundary -->
+When the rover was going out of boundary.
+Will stop before going out of boundary
 
       danger: false,
 
-<!-- input for the commands -->
+input for the commands
 
       inputCommand: ""
