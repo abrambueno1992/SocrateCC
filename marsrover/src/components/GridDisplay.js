@@ -18,7 +18,6 @@ export const Rover = props => {
             border: "3px solid red"
           }}
           src={rover}
-          // className={props.className}
         />
       ) : (
         <img
@@ -30,7 +29,6 @@ export const Rover = props => {
             border: "3px solid orange"
           }}
           src={rover}
-          // className={props.className}
         />
       )}
     </div>
@@ -55,7 +53,7 @@ export const gridDisplay = props => {
   const yPos2 = props.position2[1];
 
   return (
-    <div className="what">
+    <div>
       {yGrids
         .slice(0)
         .reverse()

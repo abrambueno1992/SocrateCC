@@ -22,31 +22,42 @@ afterEach(() => {
   wrapped.unmount();
 });
 
-it("should have input for inputCoordinates and  inputCommand", () => {
-  expect(wrapped.find(".what").length).toEqual(1);
-});
-
 describe("Check for rover", () => {
   it("should have the Rover", () => {
-    const object = {
+    const props = {
       angle: 90
     };
     const rover = "rover.png";
 
-    const action = funcs.Rover(object);
+    const action = funcs.Rover(props);
     expect(action).toEqual(
       <div
-        className="rover"
-        style={{ transform: `rotate(${object.angle}deg)` }}
+        className={props.className}
+        style={{ transform: `rotate(${props.angle}deg)` }}
       >
-        <img
-          style={{
-            widht: "85%",
-            height: "85%",
-            transform: `rotate(${-90}deg)`
-          }}
-          src={rover}
-        />
+        {props.className === "DRover2" ? (
+          <img
+            style={{
+              widht: "85%",
+              background: "orange",
+              height: "85%",
+              transform: `rotate(${-90}deg)`,
+              border: "3px solid red"
+            }}
+            src={rover}
+          />
+        ) : (
+          <img
+            style={{
+              widht: "85%",
+              background: "red",
+              height: "85%",
+              transform: `rotate(${-90}deg)`,
+              border: "3px solid orange"
+            }}
+            src={rover}
+          />
+        )}
       </div>
     );
   });
