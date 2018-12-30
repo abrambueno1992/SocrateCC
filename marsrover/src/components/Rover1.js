@@ -104,6 +104,8 @@ class Rover1 extends Component {
     // position = (y, x) ... values starting at (0,0)
     let x = this.props.position[1];
     let y = this.props.position[0];
+    const xOrig = x;
+    const yOrig = y;
 
     // Dimension of the grid held in state xGrids and yGrids
     // default dimension is 0 by 0
@@ -121,24 +123,40 @@ class Rover1 extends Component {
     // Make sure x and y are not out of boundary, below 0 0
     if (x < 0 || y < 0) {
       this.setState({ danger: true });
+      this.props.executeCMDmv(
+        {
+          position: [yOrig, xOrig],
+          commandQueu: [],
+          execute: 1
+        },
+        1
+      );
       return;
     }
 
     // Make sure x && y are not out of boundary, xGrids && yGrids are maximum
-    if (x >= xGrids || y >= yGrids) {
+    else if (x >= xGrids || y >= yGrids) {
       this.setState({ danger: true });
+      this.props.executeCMDmv(
+        {
+          position: [yOrig, xOrig],
+          commandQueu: [],
+          execute: 1
+        },
+        1
+      );
       return;
+    } else {
+      // position = (y, x) ... values starting at (0,0)
+      this.props.executeCMDmv(
+        {
+          position: [y, x],
+          commandQueu: split,
+          execute: end
+        },
+        1
+      );
     }
-
-    // position = (y, x) ... values starting at (0,0)
-    this.props.executeCMDmv(
-      {
-        position: [y, x],
-        commandQueu: split,
-        execute: end
-      },
-      1
-    );
   };
   cancelCommands = () => {
     this.props.executeCommands(2);
