@@ -22,8 +22,6 @@ afterEach(() => {
 });
 
 it("should have a GridDisplay component", () => {
-  // console.log(wrapped.prop().children);
-
   expect(wrapped.find(".GridDisplay").length).toEqual(1);
 });
 
