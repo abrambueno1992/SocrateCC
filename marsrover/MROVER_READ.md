@@ -19,9 +19,9 @@ executeCMDmv takes in a dataObject and an integer (corresponding to the rover nu
 
 The redux store has state for Rover1 component, Rover2 component, and Controller component. GridDisplay is a stateless components, and is used to use the state from Rover1, Rover2, and Controller.
 Rover1 and Rover2 have identical state naming, but differentiate only by the ending integer.
-Rover 1 and Rover 2 initial state:
-
 ![alt text](src/ReduxFlow.png)
+
+Rover 1 and Rover 2 initial state:
 
 Rover position
 
