@@ -4,16 +4,16 @@ This is a project that sets a Grid, initial positioning of two rovers, and the c
 
 ### `Components`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The parent component is Root, and it wraps all other components starting with the App component. Inside the App component is where the Controller component is located. The primary component, Controller, contains both Rover1 component and Rover2 component, as well as the GridDisplay component.
 
 ### `Redux Actions`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The redux actions are separated into rover actions and controller actions.
+The controller actions are two in total, setGrid which takes x and y integers as parameters, and executeCommands, which takes in a number, corresponding to 1 or 2 (1 is to execute Rover 1 commands).
+The rover actions are three in total:
+setPosR takes in a dataObject, and an integer (corresponding to the rover number, such as 1 for Rover1).
+executeCMDdir takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1).
+executeCMDmv takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1).
 
 ### `Redux State`
 
