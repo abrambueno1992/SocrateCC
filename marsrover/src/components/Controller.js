@@ -59,8 +59,6 @@ class Controller extends Component {
         "The input for the x and y values of the grid need to be integers"
       );
     }
-    // this.setCoordinates(this.state.inputCoordinates);
-    // this.setCoordinates(this.state.inputCoordinates2, true);
   };
   sendCommands = () => {
     this.props.executeCommands(1);
