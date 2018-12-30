@@ -65,7 +65,6 @@ export const gridDisplay = props => {
                   return (
                     <Rover
                       className="DRover1"
-                      // style={{ height: "3em" }}
                       angle={props.angle}
                       key={column + x}
                     />
@@ -74,7 +73,6 @@ export const gridDisplay = props => {
                   return (
                     <Rover
                       className="DRover2"
-                      // style={{ height: "3em" }}
                       angle={props.angle2}
                       key={column + x}
                     />
