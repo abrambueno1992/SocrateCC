@@ -77,7 +77,9 @@ class Controller extends Component {
   render() {
     return (
       <div>
-        {this.state.display === false ? null : (
+        {this.state.display === false ? (
+          <div className="GridDisplay" />
+        ) : (
           <GridDisplay
             angle={this.props.angle}
             position={this.props.position}

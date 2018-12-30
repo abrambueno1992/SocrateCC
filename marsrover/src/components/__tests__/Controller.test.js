@@ -22,7 +22,9 @@ afterEach(() => {
 });
 
 it("should have a GridDisplay component", () => {
-  expect(wrapped.find(GridDisplay).length).toEqual(1);
+  // console.log(wrapped.prop().children);
+
+  expect(wrapped.find(".GridDisplay").length).toEqual(1);
 });
 
 it("should have Rover 1 and Rover 2 ", () => {
