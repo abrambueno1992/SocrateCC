@@ -16,6 +16,7 @@ class Rover2 extends Component {
       // When the rover was going out of boundary.
       //  Will stop before going out of boundary
       danger: false,
+      message: "Rover was going out of boundary, move was prevented",
 
       // input for the commands
       inputCommand: ""
@@ -182,6 +183,7 @@ class Rover2 extends Component {
           />
         </div>
         <div>
+          {this.state.danger === true ? <h3>{this.state.message}</h3> : null}
           <h6 className="R2header">
             Enter instructions for rover, sequential non-space separated (L =
             left, R = right, M = move): LRM
