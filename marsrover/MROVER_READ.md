@@ -55,17 +55,11 @@ converted to an array to keep track
     commandQueu: []
     commandQueu2: []
 
-The other state is part of Controller or is shared by both Rover1 and Rover2, such as danger (danger is not actually used).
+The other state is part of Controller or is shared by both Rover1 and Rover2, such as execute.
 
 Grid
 
     grid: null,
-
-When the rover was going out of boundary.
-
-Will stop before going out of boundary
-
-    danger: false,
 
 Starts executing when it's not zero
 
@@ -83,7 +77,7 @@ the grid dimensions from input
 
     inputGrid: "",
 
-Display the grid === true by default
+Display the grid === false by default
 
     display: false
 
@@ -91,7 +85,7 @@ Display the grid === true by default
 
 Both Rover1 and Rover2 have identical states. Because of React's component scope, both components can have state with the exact same name, but their values are independent of each other.
 
-// input for the coordinates
+input for the coordinates
 
       inputCoordinates: "",
 
