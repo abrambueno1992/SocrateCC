@@ -69,11 +69,19 @@ danger: false,
 
 execute: 0
 
-## Controller Component State
+### `Controller Component State`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- description of button -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+gridButton: "Show Grid",
+
+<!-- the grid dimensions from input -->
+
+inputGrid: "",
+
+<!-- Display the grid === true by default -->
+
+display: false
 
 ### `Rover Component States`
 

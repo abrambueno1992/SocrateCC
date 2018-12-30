@@ -16,9 +16,7 @@ class Controller extends Component {
     super(props);
 
     this.state = {
-      // grid dimensions
-      xGrids: 0,
-      yGrids: 0,
+      // description of button
       gridButton: "Show Grid",
 
       // the grid dimensions from input
@@ -54,7 +52,6 @@ class Controller extends Component {
 
     // Make sure x && y are greater than zero and both are integer values
     if (0 <= x && 0 <= y) {
-      this.setState({ xGrids: x, yGrids: y });
       this.props.setGrid(x, y);
     } else {
       this.setState({ inputGrid: "" });
@@ -109,9 +106,7 @@ class Controller extends Component {
             onChange={this.handleGrid}
           />
         </div>
-        {/* <h3>
-          This is the grid dimensions: {(this.state.xGrids, this.state.yGrids)}
-        </h3> */}
+
         <div>
           <Rover1 />
           <Rover2 />
