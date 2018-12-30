@@ -30,30 +30,30 @@ Rover position
 
 Grid
 
-    xGrids: 0
-    yGrids: 0
+    xGrids: 0,
+    yGrids: 0,
 
 Clockwise angle
 
-    direction: 90
-    direction2: 90
+    direction: 90,
+    direction2: 90,
 
 Counter-clockwise angle
 needed for CSS transform
 
-    angle: 90
-    angle2: 90
+    angle: 90,
+    angle2: 90,
 
 Direction as NSEW
 
-    dir: "N"
-    dir2: "N"
+    dir: "N",
+    dir2: "N",
 
 the queue of commands from input
 converted to an array to keep track
 
-    commandQueu: []
-    commandQueu2: []
+    commandQueu: [],
+    commandQueu2: [],
 
 The other state is part of Controller or is shared by both Rover1 and Rover2, such as execute.
 
@@ -93,6 +93,10 @@ When the rover was going out of boundary.
 Will stop before going out of boundary
 
       danger: false,
+
+The message displayed when danger is true
+
+      message: "Rover was going out of boundary, move was prevented",
 
 input for the commands
 
