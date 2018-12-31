@@ -91,10 +91,10 @@ class Rover1 extends Component {
       currentDir = currentDir === 360 ? 0 : currentDir;
       // Call the directionLogic method to get the final state
       const state = directionLogic(currentDir, split, end);
-      if (
-        this.state.message !==
-        "Rover was going out of boundary, move was prevented"
-      ) {
+
+      // Command is successful
+      // if there's a custom message, it's return to default, danger is false
+      if (this.state.danger === true) {
         this.setState({
           message: "Rover was going out of boundary, move was prevented",
           danger: false
@@ -185,10 +185,9 @@ class Rover1 extends Component {
         },
         1
       );
-      if (
-        this.state.message !==
-        "Rover was going out of boundary, move was prevented"
-      ) {
+      // Command is successful
+      // if there's a custom message, it's return to default, danger is false
+      if (this.state.danger === true) {
         this.setState({
           message: "Rover was going out of boundary, move was prevented",
           danger: false
