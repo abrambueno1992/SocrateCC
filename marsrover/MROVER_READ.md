@@ -9,7 +9,7 @@ The parent component is Root, and it wraps all other components starting with th
 ### `Redux Actions`
 
 The redux actions are separated into rover actions and controller actions.
-The controller actions are two in total, setGrid which takes x and y integers as parameters, and executeCommands, which takes in a number, corresponding to 1 or 2 (1 is to execute Rover 1 commands).
+The controller actions are two in total, setGrid which takes x and y integers as parameters, and executeCommands, which takes in an integer, corresponding to 1 or 2 (1 is to execute Rover 1 commands).
 The rover actions are three in total:
 setPosR takes in a dataObject, and an integer (corresponding to the rover number, such as 1 for Rover1).
 executeCMDdir takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1).
@@ -17,7 +17,7 @@ executeCMDmv takes in a dataObject and an integer (corresponding to the rover nu
 
 ### `Redux State`
 
-The redux store has state for Rover1 component, Rover2 component, and Controller component. GridDisplay is a stateless components, and is used to use the state from Rover1, Rover2, and Controller.
+The redux store has state for Rover1 component, Rover2 component, and Controller component. GridDisplay is a stateless components, and is used to render state from Rover1, Rover2, and Controller. GridDisplay uses the state from other components as props.
 Rover1 and Rover2 have identical state naming, but differentiate only by the ending integer.
 ![alt text](src/ReduxFlow.png)
 
@@ -83,7 +83,7 @@ Display the grid === false by default
 
 ### `Rover Component States`
 
-Both Rover1 and Rover2 have identical states. Because of React's component scope, both components can have state with the exact same name, but their values are independent of each other.
+Both Rover1 and Rover2 have identical states. Because of React's ES6 class component scope, both components can have state with the exact same name, but their values are independent of each other.
 
 input for the coordinates
 
