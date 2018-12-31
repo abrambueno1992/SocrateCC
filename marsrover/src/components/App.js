@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
-import "./App.css";
-
-// component imports
 
 import Controller from "./Controller";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div style={{ textAlign: "center" }}>
         <Controller />
       </div>
     );
