@@ -96,7 +96,8 @@ class Rover1 extends Component {
         "Rover was going out of boundary, move was prevented"
       ) {
         this.setState({
-          message: "Rover was going out of boundary, move was prevented"
+          message: "Rover was going out of boundary, move was prevented",
+          danger: false
         });
       }
       this.props.executeCMDdir(state, 1);
@@ -189,7 +190,8 @@ class Rover1 extends Component {
         "Rover was going out of boundary, move was prevented"
       ) {
         this.setState({
-          message: "Rover was going out of boundary, move was prevented"
+          message: "Rover was going out of boundary, move was prevented",
+          danger: false
         });
       }
     }
