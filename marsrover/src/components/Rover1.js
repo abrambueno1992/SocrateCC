@@ -91,6 +91,14 @@ class Rover1 extends Component {
       currentDir = currentDir === 360 ? 0 : currentDir;
       // Call the directionLogic method to get the final state
       const state = directionLogic(currentDir, split, end);
+      if (
+        this.state.message !==
+        "Rover was going out of boundary, move was prevented"
+      ) {
+        this.setState({
+          message: "Rover was going out of boundary, move was prevented"
+        });
+      }
       this.props.executeCMDdir(state, 1);
     } else {
       this.handleMove(split);
