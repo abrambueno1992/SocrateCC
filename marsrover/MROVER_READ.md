@@ -55,7 +55,7 @@ converted to an array to keep track
     commandQueu: [],
     commandQueu2: [],
 
-The other state is part of Controller or is shared by both Rover1 and Rover2, such as execute.
+The other states are part of Controller or is shared by both Rover1 and Rover2, such as execute.
 
 Grid
 
