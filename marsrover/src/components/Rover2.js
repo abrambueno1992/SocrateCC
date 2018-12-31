@@ -108,6 +108,10 @@ class Rover2 extends Component {
     const xOrig = x;
     const yOrig = y;
 
+    // Rover 1 position to check if Rover 1 and Rover 2 positions will collide
+    const x2 = this.props.positionX[1];
+    const y2 = this.props.positionX[0];
+
     // Dimension of the grid held in state xGrids and yGrids
     // default dimension is 0 by 0
     const { xGrids, yGrids } = this.props;
@@ -147,11 +151,19 @@ class Rover2 extends Component {
         2
       );
       return;
-    } else if () {
+    } else if (x2 === x && y2 === y) {
       // rover 1 and rover 2 collision
-    }
-    
-    else {
+      this.setState({ danger: true });
+      this.props.executeCMDmv(
+        {
+          position: [yOrig, xOrig],
+          commandQueu: [],
+          execute: 1
+        },
+        2
+      );
+      return;
+    } else {
       // position = (y, x) ... values starting at (0,0)
       this.props.executeCMDmv(
         {
@@ -226,6 +238,7 @@ class Rover2 extends Component {
 const maptStateToProps = state => {
   return {
     position: state.position2,
+    positionX: state.position,
 
     // Grid
     xGrids: state.xGrids,
