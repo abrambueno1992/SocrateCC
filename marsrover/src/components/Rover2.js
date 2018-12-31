@@ -147,7 +147,11 @@ class Rover2 extends Component {
         2
       );
       return;
-    } else {
+    } else if () {
+      // rover 1 and rover 2 collision
+    }
+    
+    else {
       // position = (y, x) ... values starting at (0,0)
       this.props.executeCMDmv(
         {
