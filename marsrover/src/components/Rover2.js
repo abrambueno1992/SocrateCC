@@ -173,6 +173,14 @@ class Rover2 extends Component {
         },
         2
       );
+      if (
+        this.state.message !==
+        "Rover was going out of boundary, move was prevented"
+      ) {
+        this.setState({
+          message: "Rover was going out of boundary, move was prevented"
+        });
+      }
     }
   };
   cancelCommands = () => {
