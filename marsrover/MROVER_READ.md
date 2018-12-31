@@ -12,11 +12,12 @@ The redux actions are separated into rover actions and controller actions.
 The controller actions are two in total, setGrid which takes x and y integers as parameters, and executeCommands, which takes in an integer, corresponding to 1 or 2 (1 is to execute Rover 1 commands).
 The rover actions are three in total:
 setPosR takes in a dataObject, and an integer (corresponding to the rover number, such as 1 for Rover1).
-`const state = {}; // dataOject === state; state.direction = 90; state.dir = "N"; state.angle = 90; state.position = [xCoor, yCoor]; state.coordinates = ""; setPosR(state, 1)`
-executeCMDdir takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1).
-`const state = { direction: currentDir, dir: "N", angle: 90, commandQueu: split, execute: end };// dataOject === state; executeCMDdir(state, 1)`
-executeCMDmv takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1).
-`const state = { position: [y, x], commandQueu: split, execute: end }; // dataOject === state; executeCMDmv(state, 1)`
+<br>
+`const state = {};` <br> `// dataOject === state;` <br> `state.direction = 90;` <br> `state.dir = "N";` <br> `state.angle = 90;` <br> `state.position = [xCoor, yCoor];` <br> `state.coordinates = "";` <br> `setPosR(state, 1)` <br>
+executeCMDdir takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
+`const state = { direction: currentDir, dir: "N", angle: 90, commandQueu: split, execute: end };`<br>`// dataOject === state;` <br> `executeCMDdir(state, 1)`<br>
+executeCMDmv takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
+`const state = { position: [y, x], commandQueu: split, execute: end };` <br> `// dataOject === state;`<br> `executeCMDmv(state, 1)`<br>
 
 ### `Redux State`
 
