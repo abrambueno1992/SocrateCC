@@ -153,7 +153,11 @@ class Rover2 extends Component {
       return;
     } else if (x2 === x && y2 === y) {
       // rover 1 and rover 2 collision
-      this.setState({ danger: true });
+      this.setState({
+        danger: true,
+        message:
+          "This rover was going to collide with the other rover, move was prevented"
+      });
       this.props.executeCMDmv(
         {
           position: [yOrig, xOrig],
