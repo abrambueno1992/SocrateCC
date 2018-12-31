@@ -93,7 +93,7 @@ class Rover1 extends Component {
       const state = directionLogic(currentDir, split, end);
 
       // Command is successful
-      // if there's a custom message, it's return to default, danger is false
+      // if there's a custom message, it's returned to default, danger is false
       if (this.state.danger === true) {
         this.setState({
           message: "Rover was going out of boundary, move was prevented",
@@ -186,7 +186,7 @@ class Rover1 extends Component {
         1
       );
       // Command is successful
-      // if there's a custom message, it's return to default, danger is false
+      // if there's a custom message, it's returned to default, danger is false
       if (this.state.danger === true) {
         this.setState({
           message: "Rover was going out of boundary, move was prevented",
@@ -258,7 +258,10 @@ class Rover1 extends Component {
 const maptStateToProps = state => {
   return {
     position: state.position,
-    positionX: state.position2,
+
+    // to check for collision, the position
+    // of the other rover is used
+    positionX: state.position,
 
     // Grid
     xGrids: state.xGrids,
