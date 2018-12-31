@@ -52,7 +52,6 @@ const roverStates = (state = initialState, action) => {
         direction: action.payload.direction,
         dir: action.payload.dir,
         angle: action.payload.angle
-        // coordinates: action.payload.direction,
       });
     case SET_GRID:
       return Object.assign({}, state, {
