@@ -13,11 +13,21 @@ The controller actions are two in total, setGrid which takes x and y integers as
 The rover actions are three in total:
 setPosR takes in a dataObject, and an integer (corresponding to the rover number, such as 1 for Rover1).
 <br>
-`const state = {};` <br> `// dataOject === state;` <br> `state.direction = 90;` <br> `state.dir = "N";` <br> `state.angle = 90;` <br> `state.position = [xCoor, yCoor];` <br> `setPosR(state, 1)` <br>
+`const state = {};` <br>
+`// dataOject === state;` <br>
+`state.direction = 90;` <br>
+`state.dir = "N";` <br>
+`state.angle = 90;` <br>
+`state.position = [xCoor, yCoor];` <br>
+`setPosR(state, 1)` <br>
 executeCMDdir takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
-`const state = { direction: currentDir, dir: "N", angle: 90, commandQueu: split, execute: end };`<br>`// dataOject === state;` <br> `executeCMDdir(state, 1)`<br>
+`const state = { direction: currentDir, dir: "N", angle: 90, commandQueu: split, execute: end };`<br>
+`// dataOject === state;` <br>
+`executeCMDdir(state, 1)`<br>
 executeCMDmv takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
-`const state = { position: [y, x], commandQueu: split, execute: end };` <br> `// dataOject === state;`<br> `executeCMDmv(state, 1)`<br>
+`const state = { position: [y, x], commandQueu: split, execute: end };` <br>
+`// dataOject === state;`<br>
+`executeCMDmv(state, 1)`<br>
 
 ### `Redux State`
 
