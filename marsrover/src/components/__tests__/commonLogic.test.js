@@ -10,7 +10,6 @@ describe("should return updated coordinates", () => {
     state.dir = "W";
     state.angle = 0;
     state.position = [xCoor, yCoor];
-    state.coordinates = "";
     // pDir === "W"
     const action = funcs.coordinateLogic(pDir, xCoor, yCoor);
     expect(action).toEqual(state);
