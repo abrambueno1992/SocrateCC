@@ -8,8 +8,8 @@ The parent component is Root, and it wraps all other components starting with th
 
 ### `Redux Actions`
 
-The redux actions are separated into rover actions and controller actions.
-The controller actions are two in total, **setGrid** which takes x and y integers as parameters, and **executeCommands**, which takes in an integer, corresponding to 1 or 2 (1 is to execute Rover 1 commands).
+The redux actions are separated into rover actions and controller actions. <br>
+The controller actions are two in total, **setGrid** which takes x and y integers as parameters, and **executeCommands**, which takes in an integer, corresponding to 1 or 2 (1 is to execute Rover 1 commands). <br>
 The rover actions are three in total: <br>
 **#1 setPosR** takes in a dataObject, and an integer (corresponding to the rover number, such as 1 for Rover1).
 <br>
@@ -19,11 +19,11 @@ The rover actions are three in total: <br>
 `state.dir = "N";` <br>
 `state.angle = 90;` <br>
 `state.position = [xCoor, yCoor];` <br>
-`setPosR(state, 1)` <br>
+`setPosR(state, 1)` <br> <br>
 **#2 executeCMDdir** takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
 `const state = { direction: currentDir, dir: "N", angle: 90, commandQueu: split, execute: end };`<br>
 `// dataOject === state;` <br>
-`executeCMDdir(state, 1)`<br>
+`executeCMDdir(state, 1)`<br> <br>
 **#3 executeCMDmv** takes in a dataObject and an integer (corresponding to the rover number, such as 1 for Rover1). <br>
 `const state = { position: [y, x], commandQueu: split, execute: end };` <br>
 `// dataOject === state;`<br>
@@ -83,7 +83,7 @@ Starts executing when it's not zero
 
 ![alt text](src/ComponentFlow.png)
 
-description of button
+description of button, the button only shows when there's a grid and rovers on it
 
     gridButton: "Show Grid",
 
@@ -115,3 +115,23 @@ The message displayed when danger is true
 input for the commands
 
       inputCommand: ""
+
+### `Rover Component Methods`
+// Metods === functions that are part of the class
+handleChange:
+Method that is in charge of changing the state of inputCommand and inputCoordinates. It detects changes to the input field, and makes the changes to the state according to the name and value of the input field.
+<br>
+setCoordinates:
+Method that is fired initially by **componentDidUpdate**, after the Controller component fires the **setGrid** action. **setGrid** will update the redux store, and each rover will detect the change through **componentDidUpdate**. The rovers fire **setCoordinates** to set the coordinates, based on logic from **componentDidUpdate**. This method will set the coordinates of each rover, based on the input it received from inputCoordinates state.
+<br>
+sendCommands:
+Method that is fired initially by  **componentDidUpdate**, after the Controller component fires the **executeCommands** action. **executeCommands** will update the redux store, and each rover will detect the change through **componentDidUpdate**. The rovers fire **sendCommands** to execute the commands from its inputCommand state. Rover1 commands are executed first, and after all commands from Rover1 are completed, then Rover2 will start to execute its commands. The logic to take care of the order is inside of **componentDidUpdate**, so that **componentDidUpdate** will call Rover1 first then Rover2. This method checks the command that needs to be executed. If the command is to change direction, this method will call the action **executeCMDdir**. If the command is to move the rover, then this method will call another method **handleMove**.
+<br>
+handleMove:
+Method that is fired from **sendCommands** to execute **executeCMDmv** because the command is to move the rover.
+<br>
+cancelCommands:
+Method that is fired from **componentDidUpdate** to cancel the commands for the current rover. If the commands were supposed to be executed in Rover 1, the commands will be cancelled for Rover 1 and move to Rover 2 commands. This method call the action **executeCommands** with the proper integer to execute commands from the next rover, such as Rover 2. **componentDidUpdate** has the proper logic to check for the component state, and if there are no commands, then **componentDidUpdate** will call **cancelCommands**.
+<br>
+componentDidUpdate:
+React lifecycle that detects changes to state and props. Redux state is passed into React components as props, because it's not part of the component. This method uses logic based on state from the redux store (as props) and it's own state. Based on the logic, it will fire specific methods in the class.
