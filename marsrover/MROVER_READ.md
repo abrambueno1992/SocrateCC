@@ -1,6 +1,11 @@
 ## Mars Rover
 
 This is a project that sets a Grid, initial positioning of two rovers, and the commands for the two rovers. The commands are executed for Rover 1 first, and when the queu of commands are all completed, Rover 2 commands start to be executed. The display of the grid and rovers are optional. The display shows both rovers positioning and direction, along with the proper color to differentiate between Rover 1 and Rover 2. This project uses Redux to keep state from components well organized, and without mutations. Because this program uses Redux, it's very flexible, and new features can be easily added. Currently, it's setup to execute up to 2 sets of commands, Rover 1 is set 1, and Rover 2 is set 2. If desired, another Rover can be added, which will execute set 3. The next component that takes commands doesn't have to be a Rover, it can be anything that will take input for commands to be executed.
+<br>
+To start the project, first change directories to be inside marsrover, where there's a package.json, then install the packages by running **npm install**, and finally run **npm start**.
+<br>
+To test the project, run **npm test**. <br>
+More documentation on React is inside README.md<br>
 
 ### `Components`
 
@@ -117,6 +122,7 @@ input for the commands
       inputCommand: ""
 
 ### `Rover Component Methods`
+
 // Metods === functions that are part of the class <br>
 **handleChange:**<br>
 Method that is in charge of changing the state of inputCommand and inputCoordinates. It detects changes to the input field, and makes the changes to the state according to the name and value of the input field.
@@ -125,7 +131,7 @@ Method that is in charge of changing the state of inputCommand and inputCoordina
 Method that is fired initially by **componentDidUpdate**, after the Controller component fires the **setGrid** action. **setGrid** will update the redux store, and each rover will detect the change through **componentDidUpdate**. The rovers fire **setCoordinates** to set the coordinates, based on logic from **componentDidUpdate**. This method will set the coordinates of each rover, based on the input it received from inputCoordinates state.
 <br><br>
 **sendCommands:**<br>
-Method that is fired initially by  **componentDidUpdate**, after the Controller component fires the **executeCommands** action. **executeCommands** will update the redux store, and each rover will detect the change through **componentDidUpdate**. The rovers fire **sendCommands** to execute the commands from its inputCommand state. Rover1 commands are executed first, and after all commands from Rover1 are completed, then Rover2 will start to execute its commands. The logic to take care of the order is inside of **componentDidUpdate**, so that **componentDidUpdate** will call Rover1 first then Rover2. This method checks the command that needs to be executed. If the command is to change direction, this method will call the action **executeCMDdir**. If the command is to move the rover, then this method will call another method **handleMove**.
+Method that is fired initially by **componentDidUpdate**, after the Controller component fires the **executeCommands** action. **executeCommands** will update the redux store, and each rover will detect the change through **componentDidUpdate**. The rovers fire **sendCommands** to execute the commands from its inputCommand state. Rover1 commands are executed first, and after all commands from Rover1 are completed, then Rover2 will start to execute its commands. The logic to take care of the order is inside of **componentDidUpdate**, so that **componentDidUpdate** will call Rover1 first then Rover2. This method checks the command that needs to be executed. If the command is to change direction, this method will call the action **executeCMDdir**. If the command is to move the rover, then this method will call another method **handleMove**.
 <br><br>
 **handleMove:**<br>
 Method that is fired from **sendCommands** to execute **executeCMDmv** because the command is to move the rover.
